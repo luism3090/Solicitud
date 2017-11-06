@@ -38,32 +38,45 @@ class HookValidarDatosUsuario
 			//exit();
 			if($this->ci->session->userdata('logueado') === null)
 			{
-				if( $this->ci->input->is_ajax_request())
-				{
+				// if( $this->ci->input->is_ajax_request())
+				// {
 
-					$datos["baja"]=true;
-					$datos["url"]= base_url()."Login";
+				// 	$datos["baja"]=true;
+				// 	$datos["url"]= base_url()."Login";
 
-					echo json_encode($datos);
+				// 	echo json_encode($datos);
 
-					//redirect(, 'location', 302);
+				// 	//redirect(, 'location', 302);
 					
-					exit();
+				// 	exit();
 					
-				}
-				else
-				{
+				// }
+				// else
+				// {
 
-					if($controlador != 'RegistroPersonal')
-					{
-						redirect('Login');
-						exit();
+					// if($controlador != 'RegistroPersonal' )
+					// {
+					// 	redirect('Login');
+					// 	exit();
 
-					}
+					// }
+					// else
+					// {
+					// 	if($controlador != 'Estudiantes' )
+					// 	{
+					// 		redirect('Login');
+					// 		exit();
+
+					// 	}
+					// }
+
 
 					
 					
-				}
+				// }
+				
+
+
 				
 			}
 	
