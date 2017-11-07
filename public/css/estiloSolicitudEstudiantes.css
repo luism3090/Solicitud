@@ -14,7 +14,7 @@ body, html {
 }
 
 .card-container.card {
-    width: 90%;
+    width: 100%;
     /*padding: 40px 40px;*/
     
 }
@@ -59,4 +59,10 @@ body, html {
 .cont-jefe
 {
     font-size: 16px;
+}
+
+.form-right
+{
+    margin-left: 8%;
+    margin-bottom: 5px !important;
 }
