@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Solicitudes</title>
+	<title>Registrar Carreras</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloHomeMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloBarraSuperior.css">
@@ -77,13 +77,15 @@
 		  <ul class="list-sidebar bg-defoult" >
 				<ul class="list-sidebar bg-defoult">
 						<li>
-							<a href="<?php echo base_url();?>Home" class="selecionado">
+							<a href="<?php echo base_url();?>Home">
 								<i class="fa fa-list-alt"></i>Solicitudes
 							</a>
 						</li>
 						<li>
-							<a href="#" data-toggle="collapse" data-target="#Carreras" class="collapse active" aria-expanded="false">
-										    	 <i class="fa fa-user"></i>
+							
+
+							 <a href="#" data-toggle="collapse" data-target="#Carreras" class="collapse active" aria-expanded="false">
+										    	 <i class="fa fa-graduation-cap"></i>
 										    	 <span class="nav-label">Carreras</span>
 										    	 <i class="fa fa-chevron-left pull-right"></i>
 											 </a>
@@ -106,90 +108,47 @@
 						
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 style="text-align: center;">Solicitudes</h2>
+					<h2 style="text-align: center;">Registrar Carreras</h2>
 				</div>
 			</div>
 			<br><br><br>
 			<div class="row">
 				<div class="col-xs-12">
 						
-						<div class="table-responsive">
-							
-								<table class="table table-bordered table-hover" id="tblSolicitudes" cellspacing="0"  width="100%" style="text-align: center;">
-										<caption style="text-align: center"><h4><strong>Tabla de estudiantes con solicitudes</strong></h4></caption>
-										<thead>
-							                    <tr>
-							                    	 <th>Número de control</th>
-								                      <th>Nombre</th>
-								                      <th>Apellido paterno</th>
-								                      <th>Apellido materno</th>
-								                      <th>Curp</th>
-								                      <th>Semestre</th>
-								                      <th>Créditos aprobados</th>
-								                      <th>Créditos cursados</th>
-								                      <th>Solicitud</th>
-							                    </tr>
-							            </thead>
-					                    <tbody>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    </tbody>
-						                
-						        </table>
-						</div>
+						 <form id="FormUpdateUsuarioCabecera">
+
+						 		<div class="form-group">
+										<label for="txtNombreCab">Nombre:</label>
+										<input type="text" id="txtNombreCab" name="txtNombreCab" class="form-control" placeholder="Nombre">
+									</div>
+									<div class="form-group">
+										<label for="txtApellidosCab">Apellidos:</label>
+										<input type="text" id="txtApellidosCab" name="txtApellidosCab" class="form-control" placeholder="Apellidos">
+									</div>
+									<div class="form-group">
+										<label for="txtEmailCab">Email:</label>
+										<input type="text" id="txtEmailCab" name="txtEmailCab"  class="form-control" placeholder="Email">
+									</div>
+									<div class="form-group">
+										<label for="txtPasswordCab">Password:</label>
+										<input type="text" id="txtPasswordCab" name="txtPasswordCab"  class="form-control" placeholder="Password" minlength="5"  maxlength="20" >
+									</div>
+									<div class="form-group">
+										<label for="slTipoUsuarioCab">Tipo de usuario:</label> 
+										<select id="slTipoUsuarioCab" class="form-control" name="slTipoUsuarioCab">
+											<option value="1">Super Usuario</option>
+											<option value="2">Administrador</option> 
+											<option value="3" selected>Cliente</option>
+										</select> 
+									</div>
+									<br><br>
+									<div class="text-center">
+										<button type="submit" class="btn btn-primary "  id="btnGaurdarCarrera" >Guardar</button>
+									</div>
+								
+									
+						 </form>
+						
 				</div>
 			</div>
 
@@ -295,4 +254,4 @@
 
 
 </body>
-</html>
+</html>|
