@@ -6,7 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloHomeMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloBarraSuperior.css">
-	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css"> 
+	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css">  -->
 
 	
 </head>
@@ -115,35 +115,41 @@
 			<div class="row">
 				<div class="col-xs-12">
 						
-						 <form id="FormUpdateUsuarioCabecera">
+						 <form id="formDatosCarreras">
 
 						 		<div class="form-group">
-										<label for="txtNombreCab">Nombre:</label>
-										<input type="text" id="txtNombreCab" name="txtNombreCab" class="form-control" placeholder="Nombre">
+										<label for="txtClaveOficialCarrera">Clave oficial:</label>
+										<input type="text" id="txtClaveOficialCarrera" name="txtClaveOficialCarrera" class="form-control" placeholder="Clave oficial" minlength="1"  maxlength="100">
 									</div>
 									<div class="form-group">
-										<label for="txtApellidosCab">Apellidos:</label>
-										<input type="text" id="txtApellidosCab" name="txtApellidosCab" class="form-control" placeholder="Apellidos">
+										<label for="txtCarrera">Carrera:</label>
+										<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera" minlength="1"  maxlength="100">
 									</div>
 									<div class="form-group">
-										<label for="txtEmailCab">Email:</label>
-										<input type="text" id="txtEmailCab" name="txtEmailCab"  class="form-control" placeholder="Email">
+										<label for="txtNombreCarrera">Nombre carrera:</label>
+										<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
 									</div>
 									<div class="form-group">
-										<label for="txtPasswordCab">Password:</label>
-										<input type="text" id="txtPasswordCab" name="txtPasswordCab"  class="form-control" placeholder="Password" minlength="5"  maxlength="20" >
+										<label for="txtNombreCarreraReducido">Nombre reducido:</label>
+										<input type="text" id="txtNombreCarreraReducido" name="txtNombreCarreraReducido"  class="form-control" placeholder="Nombre reducido" minlength="1"  maxlength="100" >
+									</div>
+
+									<div class="form-group">
+										<label for="txtCargaMaxima">Carga máxima:</label>
+										<input type="text" id="txtCargaMaxima" name="txtCargaMaxima"  class="form-control" placeholder="Carga máxima" minlength="1"  maxlength="4" >
 									</div>
 									<div class="form-group">
-										<label for="slTipoUsuarioCab">Tipo de usuario:</label> 
-										<select id="slTipoUsuarioCab" class="form-control" name="slTipoUsuarioCab">
-											<option value="1">Super Usuario</option>
-											<option value="2">Administrador</option> 
-											<option value="3" selected>Cliente</option>
-										</select> 
+										<label for="txtCargaMinima">Carga mínima:</label>
+										<input type="text" id="txtCargaMinima" name="txtCargaMinima"  class="form-control" placeholder="Carga mínima" minlength="1"  maxlength="4" >
 									</div>
+									<div class="form-group">
+										<label for="txtCreditosTotales">Créditos totales:</label>
+										<input type="text" id="txtCreditosTotales" name="txtCreditosTotales"  class="form-control" placeholder="Créditos totales" minlength="1"  maxlength="4" >
+									</div>
+									
 									<br><br>
 									<div class="text-center">
-										<button type="submit" class="btn btn-primary "  id="btnGaurdarCarrera" >Guardar</button>
+										<button type="submit" class="btn btn-primary "  id="btnGuardarCarrera" >Guardar</button>
 									</div>
 								
 									
@@ -172,16 +178,16 @@
 			        	<div class="col-xs-12">
 				        		
 									<div class="form-group">
-										<label for="txtNombreCab">Nombre:</label>
-										<input type="text" id="txtNombreCab" name="txtNombreCab" class="form-control" placeholder="Nombre">
+										<label for="txtClaveOficial">Clave oficial:</label>
+										<input type="text" id="txtClaveOficial" name="txtClaveOficial" class="form-control" placeholder="Clave oficial">
 									</div>
 									<div class="form-group">
-										<label for="txtApellidosCab">Apellidos:</label>
-										<input type="text" id="txtApellidosCab" name="txtApellidosCab" class="form-control" placeholder="Apellidos">
+										<label for="txtCarrera">Carrera:</label>
+										<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera">
 									</div>
 									<div class="form-group">
-										<label for="txtEmailCab">Email:</label>
-										<input type="text" id="txtEmailCab" name="txtEmailCab"  class="form-control" placeholder="Email">
+										<label for="txtNombreCarrera">Nombre carrera:</label>
+										<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera">
 									</div>
 									<div class="form-group">
 										<label for="txtPasswordCab">Password:</label>
@@ -245,12 +251,12 @@
 	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrapValidator.js"></script>
-	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script>
-	<script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script>
+	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script> -->
+	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script> -->
 	
-<!-- 	<script src="<?php echo base_url(); ?>public/js/cargarMenu.js"></script> 
-	<script src="<?php echo base_url(); ?>public/js/cargarTablaPolizas.js"></script>-->
+ 	<script src="<?php echo base_url(); ?>public/js/selectElementMenu.js"></script> 
 	<script src="<?php echo base_url(); ?>public/js/cerrarSesion.js"></script> 
+	<script src="<?php echo base_url(); ?>public/js/insertCarreras.js"></script>
 
 
 </body>
