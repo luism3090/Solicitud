@@ -226,7 +226,7 @@
 </div>
 
    <!-- Modal -->
-<div id="modalAlertaUsuarioCabecera" class="modal fade" role="dialog">
+<div id="modalAlerta" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
