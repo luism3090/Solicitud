@@ -49,7 +49,6 @@ class Carreras extends CI_Controller
     public function checkClaveOficial()
     {
       
-
           $clave_oficial = $_REQUEST['claveOficial'];
           
 
@@ -70,10 +69,10 @@ class Carreras extends CI_Controller
 
   }
 
-  public function cargarTablaCarreras()
+    public function cargarTablaCarreras()
     {
      
- 
+
        $this->load->model('Carreras/Model_Carreras');
       $datosCarreras = $this->Model_Carreras->cargarTablaCarreras($_REQUEST);
 
@@ -81,6 +80,35 @@ class Carreras extends CI_Controller
 
     }
 
+
+    public function getInfoCarrera()
+    {
+     
+     $clave_oficial = $_REQUEST['clave_oficial'];
+
+       $this->load->model('Carreras/Model_Carreras');
+      $datosCarreras = $this->Model_Carreras->getInfoCarrera($clave_oficial);
+
+      echo json_encode($datosCarreras);
+
+    }
+
+
+     public function checkModificarClaveOficial()
+    {
+      
+          $clave_oficial_new = $_REQUEST['clave_oficial_new'];
+          $clave_oficial_origen = $_REQUEST['clave_oficial_origen'];
+          
+
+          $this->load->model('Carreras/Model_Carreras'); 
+          $resultado_query = $this->Model_Carreras->checkModificarClaveOficial($clave_oficial_new,$clave_oficial_origen);
+        
+
+          echo json_encode($resultado_query);
+     
+
+    }
 
 
 }
