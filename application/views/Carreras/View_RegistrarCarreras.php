@@ -161,69 +161,7 @@
 	</div>
 
 
-       <!-- Modal -->
 
-<div id="modalUpdateUsuarioCabecera" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static" >
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-	      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Modificar usuario</h4>
-	      </div>
-	      <form id="FormUpdateUsuarioCabecera">
-		      <div class="modal-body">
-			      	<div class="row">
-			        	<div class="col-xs-12">
-				        		
-									<div class="form-group">
-										<label for="txtClaveOficial">Clave oficial:</label>
-										<input type="text" id="txtClaveOficial" name="txtClaveOficial" class="form-control" placeholder="Clave oficial">
-									</div>
-									<div class="form-group">
-										<label for="txtCarrera">Carrera:</label>
-										<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera">
-									</div>
-									<div class="form-group">
-										<label for="txtNombreCarrera">Nombre carrera:</label>
-										<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera">
-									</div>
-									<div class="form-group">
-										<label for="txtPasswordCab">Password:</label>
-										<input type="text" id="txtPasswordCab" name="txtPasswordCab"  class="form-control" placeholder="Password" minlength="5"  maxlength="20" >
-									</div>
-									<div class="form-group">
-										<label for="slTipoUsuarioCab">Tipo de usuario:</label> 
-										<select id="slTipoUsuarioCab" class="form-control" name="slTipoUsuarioCab">
-											<option value="1">Super Usuario</option>
-											<option value="2">Administrador</option> 
-											<option value="3" selected>Cliente</option>
-										</select> 
-									</div>
-
-									<div class="form-group">
-											 <label for="fileFotoCab" class="center-block text-center" >Foto:</label> 
-												<div class="kv-avatar center-block text-center" style="width:200px">
-									                <input id="fileFotoCab" name="avatar-2" type="file" class="file-loading" >
-									            </div>
-									  </div>
-											<br><br>
-									<input type="hidden" id="txtIdUsuarioCab" class="form-control">
-									
-								
-			        	</div>
-			        </div>
-		      </div>
-		      <div class="modal-footer">
-				      <button type="submit" class="btn btn-primary"  id="btnModificarUsuarioCab" >Modificar</button>
-				      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-		      </div>
-	      </form>
-    </div>
-
-  </div>
-</div>
 
    <!-- Modal -->
 <div id="modalAlerta" class="modal fade" role="dialog">
@@ -239,7 +177,7 @@
         
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal" id="btnMdlAlertaUpdateUsuario">Aceptar</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal" id="btnMdlAlertSaveCarreras">Aceptar</button>
       </div>
     </div>
 
@@ -256,7 +194,7 @@
 	
  	<script src="<?php echo base_url(); ?>public/js/selectElementMenu.js"></script> 
 	<script src="<?php echo base_url(); ?>public/js/cerrarSesion.js"></script> 
-	<script src="<?php echo base_url(); ?>public/js/insertCarreras.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/carreras.js"></script>
 
 
 </body>

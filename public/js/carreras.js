@@ -37,8 +37,54 @@ $(document).ready(function()
 	                    notEmpty: {
 	                        message: 'Este campo es requerido'
 	                    },
+                                  callback: {
+                                  message: 'La clave oficial no esta disponible',
+                                  callback: function(value, validator) {
+                                      // Get the selected options
 
-	                }
+                                      var valida = true;
+
+                                      var datoCarrera = {
+                                                            claveOficial:$("#txtClaveOficialCarrera").val()
+                                                          }
+
+
+                                                  $.ajax(
+                                                  {
+                                                      type: "POST",
+                                                      url: base_url+"Carreras/checkClaveOficial",
+                                                    dataType:"json",
+                                                      data: datoCarrera,
+                                                       async: false,
+                                                      success: function(result)
+                                                          {
+
+                                                              if(result.resultado == 'NO_DISPONIBLE')
+                                                              {
+                                                                 valida = false;
+                                                              }
+                                                              else
+                                                              {
+                                                                valida = true;
+                                                              }
+                                                           
+                                                          },
+                                                     error:function(result)
+                                                        {
+                                                          alert("Error");
+                                                         console.log(result.responseText);
+                                                          
+                                                        }
+                                                        
+                                                  });
+
+                                                  return valida;
+
+                                  }
+                              },
+
+
+	                },
 	            }
 	            ,
 	            txtCarrera: {
@@ -149,17 +195,12 @@ $(document).ready(function()
 	          success: function(result)
 		          {
 		          	
+		          	$('#modalAlerta .modal-body').text(result.mensaje);
+		          	$('#modalAlerta').modal('show');
 		          	if(result.resultado == 'OK')
 		          	{
-		          		$('#modalAlerta .modal-body').text(result.mensaje);
-		          		$('#modalAlerta').modal('show');
-
+		          		$("#btnGuardarCarrera").prop("resultado",result.resultado);
 		          		
-		          	}
-		          	else
-		          	{
-		          		$('#modalAlerta .modal-body').text(result.mensaje);
-		          		$('#modalAlerta').modal('show');
 		          	}
 
 		          },
@@ -175,6 +216,18 @@ $(document).ready(function()
 
 
 	}
+
+
+	$('#modalAlerta').on('hide.bs.modal', function (e) 
+    {
+    	if($("#btnGuardarCarrera").prop("resultado") =='OK')
+    	{
+    		location.reload();
+    	}
+
+    	$("#btnGuardarCarrera").removeProp("resultado");
+        
+    });
 
 
 });
