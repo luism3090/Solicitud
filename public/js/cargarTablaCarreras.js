@@ -4,10 +4,6 @@ $(document).on('ready',function()
 
      validaDatosCarreras();
 
-
-
-
-
                var tblCarreras = $('#tblCarreras').DataTable(
                {
                   "processing": true,
@@ -44,6 +40,9 @@ $(document).on('ready',function()
                    
                
                });
+
+
+
 
           $("body").on("click",".btnModificarCarrera",function()
           {
@@ -83,13 +82,7 @@ $(document).on('ready',function()
                                    $('#modalAlerta').modal('show');
                               }
                            
-                           // $('#modalAlerta .modal-body').text(result.mensaje);
-                           // 
-                           // if(result.resultado == 'OK')
-                           // {
-                           //   $("#btnGuardarCarrera").prop("resultado",result.resultado);
-                             
-                           // }
+                          
 
                          },
                     error:function(result)
@@ -276,6 +269,7 @@ $(document).on('ready',function()
 
                  var datosCarrera = {
                    claveOficial:$("#txtClaveOficialCarrera").val(),
+                    claveOficialOrigen:$("#txtClaveOficialCarrera").prop("clave_oficial"),
                    carrera:$("#txtCarrera").val(),
                    nombreCarrera:$("#txtNombreCarrera").val(),
                    nombreCarreraReducido:$("#txtNombreCarreraReducido").val(),
@@ -286,32 +280,33 @@ $(document).on('ready',function()
 
                  console.log(datosCarrera);
 
-                 // $.ajax(
-                 // {
-                 //       type: "POST",
-                 //       dataType:"json",
-                 //       url: base_url+"Carreras/guardarCarreras",
-                 //       data: datosCarrera,
-                 //       async: true,
-                 //       success: function(result)
-                 //         {
+                 $.ajax(
+                 {
+                       type: "POST",
+                       dataType:"json",
+                       url: base_url+"Carreras/modificarCarreras",
+                       data: datosCarrera,
+                       async: true,
+                       success: function(result)
+                         {
                            
-                 //           $('#modalAlerta .modal-body').text(result.mensaje);
-                 //           $('#modalAlerta').modal('show');
-                 //           if(result.resultado == 'OK')
-                 //           {
-                 //             $("#btnGuardarCarrera").prop("resultado",result.resultado);
+                            $('#modalAlertaModificarCarrera').modal("hide");
+                           $('#modalAlerta .modal-body').text(result.mensaje);
+                           $('#modalAlerta').modal('show');
+                           if(result.resultado == 'OK')
+                           {
+                             $("#btnMdlAlertModificarCarreras").prop("resultado",result.resultado);
                              
-                 //           }
+                           }
 
-                 //         },
-                 //    error:function(result)
-                 //     {
-                 //       console.log(result.responseText);
-                 //       //$("#error").html(data.responseText); 
-                 //     }
+                         },
+                    error:function(result)
+                     {
+                       console.log(result.responseText);
+                       //$("#error").html(data.responseText); 
+                     }
                        
-                 //     });
+                     });
 
                  });
 
@@ -337,6 +332,15 @@ $(document).on('ready',function()
                $("#formDatosCarreras").bootstrapValidator('resetForm', true);
              
          });
+
+
+          $('#modalAlerta').on('hide.bs.modal', function (e) 
+         {
+
+               location.reload();
+             
+         });
+
 
 
 });

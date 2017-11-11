@@ -374,5 +374,47 @@
 
 
 
+		public function modificarCarreras($clave_oficial,$claveOficialOrigen,$carrera,$nombre_carrera,$nombre_reducido,$carga_maxima,$carga_minima,$creditos_totales)
+		{
+
+			
+			
+			$sql =	"update carreras set 
+											clave_oficial = ? ,
+											carrera = ? ,
+											nombre_carrera = ? ,
+											nombre_reducido = ? ,
+											carga_maxima = ? ,
+											carga_minima = ? ,
+											creditos_totales = ?
+										where 
+											clave_oficial = ? ";
+
+			$query = $this->db->query($sql,array($clave_oficial,$carrera,$nombre_carrera,$nombre_reducido,$carga_maxima,$carga_minima,$creditos_totales,$claveOficialOrigen));
+
+
+			if($query)
+			{
+				$resultado_query = array(
+											'resultado'=>'OK',
+											'mensaje'=>'La carrera ha sido modificada correctamente'
+										);
+			}
+			else{
+				$resultado_query = array(
+											'resultado'=>'ERROR',
+											'mensaje'=>'Ocurrio un error a la hora de guardar los datos'
+										);
+			}
+			
+
+			return $resultado_query;
+
+
+
+		}
+
+
+
 	}
 ?>

@@ -38,8 +38,8 @@ class Carreras extends CI_Controller
         	$creditosTotales = $_REQUEST['creditosTotales'];
 
 
-          $this->load->model('Carreras/Model_Carreras'); 
-          $resultado_query = $this->Model_Carreras->guardarCarreras($claveOficial,$carrera,$nombreCarrera,$nombreCarreraReducido,$cargaMaxima,$cargaMinima,$creditosTotales);
+                $this->load->model('Carreras/Model_Carreras'); 
+                $resultado_query = $this->Model_Carreras->guardarCarreras($claveOficial,$carrera,$nombreCarrera,$nombreCarreraReducido,$cargaMaxima,$cargaMinima,$creditosTotales);
 
       	echo json_encode($resultado_query);
      
@@ -65,7 +65,7 @@ class Carreras extends CI_Controller
   public function modificar()
   {
    
-     $this->load->view('Carreras/View_ModificarCarreras.php');
+      $this->load->view('Carreras/View_ModificarCarreras.php');
 
   }
 
@@ -73,10 +73,10 @@ class Carreras extends CI_Controller
     {
      
 
-       $this->load->model('Carreras/Model_Carreras');
-      $datosCarreras = $this->Model_Carreras->cargarTablaCarreras($_REQUEST);
+            $this->load->model('Carreras/Model_Carreras');
+             $datosCarreras = $this->Model_Carreras->cargarTablaCarreras($_REQUEST);
 
-      echo json_encode($datosCarreras);
+            echo json_encode($datosCarreras);
 
     }
 
@@ -84,18 +84,18 @@ class Carreras extends CI_Controller
     public function getInfoCarrera()
     {
      
-     $clave_oficial = $_REQUEST['clave_oficial'];
+           $clave_oficial = $_REQUEST['clave_oficial'];
 
-       $this->load->model('Carreras/Model_Carreras');
-      $datosCarreras = $this->Model_Carreras->getInfoCarrera($clave_oficial);
+             $this->load->model('Carreras/Model_Carreras');
+            $datosCarreras = $this->Model_Carreras->getInfoCarrera($clave_oficial);
 
-      echo json_encode($datosCarreras);
+            echo json_encode($datosCarreras);
 
     }
 
 
      public function checkModificarClaveOficial()
-    {
+     {
       
           $clave_oficial_new = $_REQUEST['clave_oficial_new'];
           $clave_oficial_origen = $_REQUEST['clave_oficial_origen'];
@@ -106,9 +106,30 @@ class Carreras extends CI_Controller
         
 
           echo json_encode($resultado_query);
-     
 
-    }
+      }
+
+
+      public function modificarCarreras()
+      {
+      
+
+                  $claveOficial = $_REQUEST['claveOficial'];
+                  $claveOficialOrigen = $_REQUEST['claveOficialOrigen'];
+                  $carrera = $_REQUEST['carrera'];
+                  $nombreCarrera = $_REQUEST['nombreCarrera'];
+                  $nombreCarreraReducido = $_REQUEST['nombreCarreraReducido'];
+                  $cargaMaxima = $_REQUEST['cargaMaxima'];
+                  $cargaMinima = $_REQUEST['cargaMinima'];
+                  $creditosTotales = $_REQUEST['creditosTotales'];
+
+
+                      $this->load->model('Carreras/Model_Carreras'); 
+                      $resultado_query = $this->Model_Carreras->modificarCarreras($claveOficial,$claveOficialOrigen,$carrera,$nombreCarrera,$nombreCarreraReducido,$cargaMaxima,$cargaMinima,$creditosTotales);
+
+                  echo json_encode($resultado_query);
+
+      }
 
 
 }

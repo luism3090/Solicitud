@@ -208,6 +208,7 @@
 		      </div>
 		      <div class="modal-footer">
 		      		<button type="submit" class="btn btn-primary"  id="btnMdlAlertModificarCarreras">Modificar</button>
+		      		 <button type="button" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
 		      </div>
        </form>
     </div>
@@ -231,7 +232,8 @@
         
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-default" data-dismiss="modal" id="btnMdlAlertSaveCarreras">Aceptar</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveCarreras">Aceptar</button>
+
       </div>
     </div>
 
