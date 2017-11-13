@@ -94,8 +94,23 @@
 							 </ul>
 						</li>
 						<li>
-							<a href="<?php echo base_url();?>Materias"><i class="fa fa-pencil-square-o"></i>Materias</a>
+							<a href="#" data-toggle="collapse" data-target="#Materias" class="collapse active" aria-expanded="false">
+										    	 <i class="fa fa-pencil-square-o"></i>
+										    	 <span class="nav-label">Materias</span>
+										    	 <i class="fa fa-chevron-left pull-right"></i>
+											 </a>
+
+							 <ul class="sub-menu collapse" id="Materias" aria-expanded="false" style="">
+						    	 <li><a href="<?php echo base_url();?>Materias/registrar"><i class=""></i>Registrar</a></li>
+						    	 <li><a href="<?php echo base_url();?>Materias/modificar"><i class=""></i>Modificar</a></li>
+							 </ul>
 						</li>
+						<li>
+							<a href="<?php echo base_url();?>CarrerasMaterias" >
+								<i class="fa fa-list-alt"></i>Carreras y Materias
+							</a>
+						</li>
+						
 					</ul> 
 		  </ul>
 

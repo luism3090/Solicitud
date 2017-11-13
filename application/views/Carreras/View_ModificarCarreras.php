@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Registrar Carreras</title>
+	<title>Modificar Carreras</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloHomeMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloBarraSuperior.css">
@@ -83,8 +83,6 @@
 							</a>
 						</li>
 						<li>
-							
-
 							 <a href="#" data-toggle="collapse" data-target="#Carreras" class="collapse active" aria-expanded="false">
 										    	 <i class="fa fa-graduation-cap"></i>
 										    	 <span class="nav-label">Carreras</span>
@@ -96,8 +94,22 @@
 						    	 <li><a href="<?php echo base_url();?>Carreras/modificar"><i class=""></i>Modificar</a></li>
 							 </ul>
 						</li>
+						 <li>
+							<a href="#" data-toggle="collapse" data-target="#Materias" class="collapse active" aria-expanded="false">
+										    	 <i class="fa fa-pencil-square-o"></i>
+										    	 <span class="nav-label">Materias</span>
+										    	 <i class="fa fa-chevron-left pull-right"></i>
+											 </a>
+
+							 <ul class="sub-menu collapse" id="Materias" aria-expanded="false" style="">
+						    	 <li><a href="<?php echo base_url();?>Materias/registrar"><i class=""></i>Registrar</a></li>
+						    	 <li><a href="<?php echo base_url();?>Materias/modificar"><i class=""></i>Modificar</a></li>
+							 </ul>
+						</li>
 						<li>
-							<a href="<?php echo base_url();?>Materias"><i class="fa fa-pencil-square-o"></i>Materias</a>
+							<a href="<?php echo base_url();?>CarrerasMaterias" >
+								<i class="fa fa-list-alt"></i>Carreras y Materias
+							</a>
 						</li>
 					</ul> 
 		  </ul>
@@ -158,53 +170,81 @@
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content" style='width: 800px'>
       <div class="modal-header">
        <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Modificar Carrera</h4>
       </div>
        <form id="formDatosCarreras">
 		      <div class="modal-body">
+
+
 		        	<div class="row">
+							<div class="col-xs-6">
+									
+					 			<div class="form-group">
+									<label for="txtClaveOficialCarrera">Clave oficial:</label>
+									<input type="text" id="txtClaveOficialCarrera" name="txtClaveOficialCarrera" class="form-control" placeholder="Clave oficial" minlength="1"  maxlength="100">
+								</div>
+
+							</div>
+							<div class="col-xs-6">
+								<div class="form-group">
+									<label for="txtCarrera">Carrera:</label>
+									<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera" minlength="1"  maxlength="100">
+								</div>
+							</div>
+
+
+					</div>
+					<div class="row">
 						<div class="col-xs-12">
-								
-								
+							<div class="form-group">
+								<label for="txtNombreCarrera">Nombre carrera:</label>
+								<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
+							</div>
+						</div>
+					</div>	
+					<div class="row">
+						<div class="col-xs-6">
+							<div class="form-group">
+								<label for="txtNombreCarreraReducido">Nombre reducido:</label>
+								<input type="text" id="txtNombreCarreraReducido" name="txtNombreCarreraReducido"  class="form-control" placeholder="Nombre reducido" minlength="1"  maxlength="100" >
+							</div>
+						</div>
+						<div class="col-xs-6">
+							<div class="form-group">
+								<label for="txtCargaMaxima">Carga máxima:</label>
+								<input type="text" id="txtCargaMaxima" name="txtCargaMaxima"  class="form-control" placeholder="Carga máxima" minlength="1"  maxlength="4" >
+							</div>
+						</div>
+					</div>
+					<div class="row">
+							<div class="col-xs-6">
+								<div class="form-group">
+									<label for="txtCargaMinima">Carga mínima:</label>
+									<input type="text" id="txtCargaMinima" name="txtCargaMinima"  class="form-control" placeholder="Carga mínima" minlength="1"  maxlength="4" >
+								</div>
+							</div>
+						
+						
+							<div class="col-xs-6">
+								<div class="form-group">
+									<label for="txtCreditosTotales">Créditos totales:</label>
+									<input type="text" id="txtCreditosTotales" name="txtCreditosTotales"  class="form-control" placeholder="Créditos totales" minlength="1"  maxlength="4" >
+								</div>
+							</div>
+					</div>
 
-								 		<div class="form-group">
-												<label for="txtClaveOficialCarrera">Clave oficial:</label>
-												<input type="text" id="txtClaveOficialCarrera" name="txtClaveOficialCarrera" class="form-control" placeholder="Clave oficial" minlength="1"  maxlength="100">
-											</div>
-											<div class="form-group">
-												<label for="txtCarrera">Carrera:</label>
-												<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera" minlength="1"  maxlength="100">
-											</div>
-											<div class="form-group">
-												<label for="txtNombreCarrera">Nombre carrera:</label>
-												<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
-											</div>
-											<div class="form-group">
-												<label for="txtNombreCarreraReducido">Nombre reducido:</label>
-												<input type="text" id="txtNombreCarreraReducido" name="txtNombreCarreraReducido"  class="form-control" placeholder="Nombre reducido" minlength="1"  maxlength="100" >
-											</div>
-
-											<div class="form-group">
-												<label for="txtCargaMaxima">Carga máxima:</label>
-												<input type="text" id="txtCargaMaxima" name="txtCargaMaxima"  class="form-control" placeholder="Carga máxima" minlength="1"  maxlength="4" >
-											</div>
-											<div class="form-group">
-												<label for="txtCargaMinima">Carga mínima:</label>
-												<input type="text" id="txtCargaMinima" name="txtCargaMinima"  class="form-control" placeholder="Carga mínima" minlength="1"  maxlength="4" >
-											</div>
-											<div class="form-group">
-												<label for="txtCreditosTotales">Créditos totales:</label>
-												<input type="text" id="txtCreditosTotales" name="txtCreditosTotales"  class="form-control" placeholder="Créditos totales" minlength="1"  maxlength="4" >
-											</div>
 											
 										
 								
-								
-						</div>
-					</div>
+					 			
+						
+						<!--
+					</div> -->
+
+
 		      </div>
 		      <div class="modal-footer">
 		      		<button type="submit" class="btn btn-primary"  id="btnMdlAlertModificarCarreras">Modificar</button>

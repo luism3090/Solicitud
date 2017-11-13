@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Registrar Carreras</title>
+	<title>Modificar Carreras</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloHomeMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloBarraSuperior.css">
@@ -122,48 +122,27 @@
 						
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 style="text-align: center;">Registrar Carreras</h2>
+					<h2 style="text-align: center;">Registrar Materias</h2>
 				</div>
 			</div>
 			<br><br><br>
 			<div class="row">
 				<div class="col-xs-12">
 						
-						 <form id="formDatosCarreras">
+						 <form id="formDatosMaterias">
 
 						 		<div class="form-group">
-										<label for="txtClaveOficialCarrera">Clave oficial:</label>
-										<input type="text" id="txtClaveOficialCarrera" name="txtClaveOficialCarrera" class="form-control" placeholder="Clave oficial" minlength="1"  maxlength="100">
-									</div>
-									<div class="form-group">
-										<label for="txtCarrera">Carrera:</label>
-										<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera" minlength="1"  maxlength="100">
-									</div>
-									<div class="form-group">
-										<label for="txtNombreCarrera">Nombre carrera:</label>
-										<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
-									</div>
-									<div class="form-group">
-										<label for="txtNombreCarreraReducido">Nombre reducido:</label>
-										<input type="text" id="txtNombreCarreraReducido" name="txtNombreCarreraReducido"  class="form-control" placeholder="Nombre reducido" minlength="1"  maxlength="100" >
-									</div>
-
-									<div class="form-group">
-										<label for="txtCargaMaxima">Carga máxima:</label>
-										<input type="text" id="txtCargaMaxima" name="txtCargaMaxima"  class="form-control" placeholder="Carga máxima" minlength="1"  maxlength="4" >
-									</div>
-									<div class="form-group">
-										<label for="txtCargaMinima">Carga mínima:</label>
-										<input type="text" id="txtCargaMinima" name="txtCargaMinima"  class="form-control" placeholder="Carga mínima" minlength="1"  maxlength="4" >
-									</div>
-									<div class="form-group">
-										<label for="txtCreditosTotales">Créditos totales:</label>
-										<input type="text" id="txtCreditosTotales" name="txtCreditosTotales"  class="form-control" placeholder="Créditos totales" minlength="1"  maxlength="4" >
-									</div>
-									
+										<label for="txtNombreMateria">Nombre materia:</label>
+										<input type="text" id="txtNombreMateria" name="txtNombreMateria" class="form-control" placeholder="Nombre materia" minlength="1"  maxlength="100">
+								</div>
+								<div class="form-group">
+									<label for="txtNombreMateriaAbreviado">Nombre materia abreviado:</label>
+									<input type="text" id="txtNombreMateriaAbreviado" name="txtNombreMateriaAbreviado" class="form-control" placeholder="Nombre materia abreviado" minlength="1"  maxlength="100">
+								</div>
+								
 									<br><br>
 									<div class="text-center">
-										<button type="submit" class="btn btn-primary "  id="btnGuardarCarrera" >Guardar</button>
+										<button type="submit" class="btn btn-primary "  id="btnGuardarMateria" >Guardar</button>
 									</div>
 								
 									
@@ -191,7 +170,7 @@
         
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveCarreras">Aceptar</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveMaterias">Aceptar</button>
       </div>
     </div>
 
@@ -208,7 +187,7 @@
 	
  	<script src="<?php echo base_url(); ?>public/js/selectElementMenu.js"></script> 
 	<script src="<?php echo base_url(); ?>public/js/cerrarSesion.js"></script> 
-	<script src="<?php echo base_url(); ?>public/js/carreras.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/materias.js"></script>
 
 
 </body>

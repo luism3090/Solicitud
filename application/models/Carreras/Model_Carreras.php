@@ -19,7 +19,8 @@
 											nombre_reducido,
 											carga_maxima,
 											carga_minima,
-											creditos_totales
+											creditos_totales,
+											fecha_ingreso
 											) 
 											values (
 												?,
@@ -28,7 +29,8 @@
 												?,
 												?,
 												?,
-												?
+												?,
+												now()
 											)";
 
 			$query = $this->db->query($sql,array($clave_oficial,$carrera,$nombre_carrera,$nombre_reducido,$carga_maxima,$carga_minima,$creditos_totales));

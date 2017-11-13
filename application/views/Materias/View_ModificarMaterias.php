@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Registrar Carreras</title>
+	<title>Modificar Materias</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloHomeMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloBarraSuperior.css">
-	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css">  -->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/select.dataTables.min.css">
 
 	
 </head>
@@ -82,8 +83,6 @@
 							</a>
 						</li>
 						<li>
-							
-
 							 <a href="#" data-toggle="collapse" data-target="#Carreras" class="collapse active" aria-expanded="false">
 										    	 <i class="fa fa-graduation-cap"></i>
 										    	 <span class="nav-label">Carreras</span>
@@ -120,60 +119,91 @@
 
 	<div class="container" style="margin-left:18%;width:78%;" >
 						
-			<div class="row">
-				<div class="col-xs-12">
-					<h2 style="text-align: center;">Registrar Carreras</h2>
-				</div>
-			</div>
-			<br><br><br>
-			<div class="row">
-				<div class="col-xs-12">
-						
-						 <form id="formDatosCarreras">
-
-						 		<div class="form-group">
-										<label for="txtClaveOficialCarrera">Clave oficial:</label>
-										<input type="text" id="txtClaveOficialCarrera" name="txtClaveOficialCarrera" class="form-control" placeholder="Clave oficial" minlength="1"  maxlength="100">
-									</div>
-									<div class="form-group">
-										<label for="txtCarrera">Carrera:</label>
-										<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera" minlength="1"  maxlength="100">
-									</div>
-									<div class="form-group">
-										<label for="txtNombreCarrera">Nombre carrera:</label>
-										<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
-									</div>
-									<div class="form-group">
-										<label for="txtNombreCarreraReducido">Nombre reducido:</label>
-										<input type="text" id="txtNombreCarreraReducido" name="txtNombreCarreraReducido"  class="form-control" placeholder="Nombre reducido" minlength="1"  maxlength="100" >
-									</div>
-
-									<div class="form-group">
-										<label for="txtCargaMaxima">Carga máxima:</label>
-										<input type="text" id="txtCargaMaxima" name="txtCargaMaxima"  class="form-control" placeholder="Carga máxima" minlength="1"  maxlength="4" >
-									</div>
-									<div class="form-group">
-										<label for="txtCargaMinima">Carga mínima:</label>
-										<input type="text" id="txtCargaMinima" name="txtCargaMinima"  class="form-control" placeholder="Carga mínima" minlength="1"  maxlength="4" >
-									</div>
-									<div class="form-group">
-										<label for="txtCreditosTotales">Créditos totales:</label>
-										<input type="text" id="txtCreditosTotales" name="txtCreditosTotales"  class="form-control" placeholder="Créditos totales" minlength="1"  maxlength="4" >
-									</div>
+								<div class="row">
+									<div class="col-xs-12 text-center">
+										
+										<h3>Modificar Materias</h3>	
 									
-									<br><br>
-									<div class="text-center">
-										<button type="submit" class="btn btn-primary "  id="btnGuardarCarrera" >Guardar</button>
 									</div>
+								</div>
+								<br>
 								
-									
-						 </form>
-						
-				</div>
-			</div>
+								<form action="" id="formModificarCarreras">
+								
+									<fieldset>
+										<legend>Seleccionar Materias:</legend>
+										<div class="row">
+											<div class="col-xs-12 ">
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover" id="tblMaterias" cellspacing="0"  width="100%" style="text-align: center;">
+															<caption style="text-align: center"><h4><strong>Materias</strong></h4></caption>
+															<thead>
+												                    <tr>
+												                    	<th>id_materia</th>
+													                      <th>Nombre materia</th>
+													                      <th>Nombre materias abreviado</th>
+													                      <th>Modificar</th>
+													                      <th>Eliminar</th>
+												                    </tr>
+											                </thead>
+											        </table>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									<br><br>
+										
+
+								</form>
 
 	</div>
 
+
+
+
+   <!-- Modal -->
+<div id="modalAlertaModificarMateria" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style='width: 800px'>
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modificar Carrera</h4>
+      </div>
+       <form id="formDatosMaterias">
+		      <div class="modal-body">
+
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label for="txtNombreMateria">Nombre materia:</label>
+								<input type="text" id="txtNombreMateria" name="txtNombreMateria"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
+							</div>
+						</div>
+					</div>	
+					
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label for="txtNombreMateriaAbreviado">Nombre materia abreviado:</label>
+								<input type="text" id="txtNombreMateriaAbreviado" name="txtNombreMateriaAbreviado"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
+							</div>
+						</div>
+					</div>	
+
+
+
+		      </div>
+		      <div class="modal-footer">
+		      		<button type="submit" class="btn btn-primary"  id="btnMdlAlertModificarMaterias">Modificar</button>
+		      		 <button type="button" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
+		      </div>
+       </form>
+    </div>
+
+  </div>
+</div>
 
 
 
@@ -191,7 +221,8 @@
         
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveCarreras">Aceptar</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveMaterias">Aceptar</button>
+
       </div>
     </div>
 
@@ -203,12 +234,14 @@
 	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrapValidator.js"></script>
-	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script> -->
-	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script> -->
+
+	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script>
+	<script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script>
 	
  	<script src="<?php echo base_url(); ?>public/js/selectElementMenu.js"></script> 
 	<script src="<?php echo base_url(); ?>public/js/cerrarSesion.js"></script> 
-	<script src="<?php echo base_url(); ?>public/js/carreras.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/cargarTablaMaterias.js"></script>
+
 
 
 </body>

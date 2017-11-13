@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Registrar Carreras</title>
+	<title>Carreras Materias</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloHomeMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloBarraSuperior.css">
-	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css">  -->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/select.dataTables.min.css">
 
 	
 </head>
@@ -82,8 +83,6 @@
 							</a>
 						</li>
 						<li>
-							
-
 							 <a href="#" data-toggle="collapse" data-target="#Carreras" class="collapse active" aria-expanded="false">
 										    	 <i class="fa fa-graduation-cap"></i>
 										    	 <span class="nav-label">Carreras</span>
@@ -122,58 +121,117 @@
 						
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 style="text-align: center;">Registrar Carreras</h2>
+					<h2 style="text-align: center;">Carreras y Materias</h2>
 				</div>
 			</div>
 			<br><br><br>
-			<div class="row">
-				<div class="col-xs-12">
-						
-						 <form id="formDatosCarreras">
+			 <form id="formCarrerasMaterias">
 
-						 		<div class="form-group">
-										<label for="txtClaveOficialCarrera">Clave oficial:</label>
-										<input type="text" id="txtClaveOficialCarrera" name="txtClaveOficialCarrera" class="form-control" placeholder="Clave oficial" minlength="1"  maxlength="100">
-									</div>
-									<div class="form-group">
-										<label for="txtCarrera">Carrera:</label>
-										<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera" minlength="1"  maxlength="100">
-									</div>
-									<div class="form-group">
-										<label for="txtNombreCarrera">Nombre carrera:</label>
-										<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
-									</div>
-									<div class="form-group">
-										<label for="txtNombreCarreraReducido">Nombre reducido:</label>
-										<input type="text" id="txtNombreCarreraReducido" name="txtNombreCarreraReducido"  class="form-control" placeholder="Nombre reducido" minlength="1"  maxlength="100" >
-									</div>
-
-									<div class="form-group">
-										<label for="txtCargaMaxima">Carga máxima:</label>
-										<input type="text" id="txtCargaMaxima" name="txtCargaMaxima"  class="form-control" placeholder="Carga máxima" minlength="1"  maxlength="4" >
-									</div>
-									<div class="form-group">
-										<label for="txtCargaMinima">Carga mínima:</label>
-										<input type="text" id="txtCargaMinima" name="txtCargaMinima"  class="form-control" placeholder="Carga mínima" minlength="1"  maxlength="4" >
-									</div>
-									<div class="form-group">
-										<label for="txtCreditosTotales">Créditos totales:</label>
-										<input type="text" id="txtCreditosTotales" name="txtCreditosTotales"  class="form-control" placeholder="Créditos totales" minlength="1"  maxlength="4" >
-									</div>
-									
-									<br><br>
-									<div class="text-center">
-										<button type="submit" class="btn btn-primary "  id="btnGuardarCarrera" >Guardar</button>
-									</div>
+					<div class="row">
+						<div class="col-xs-12">
 								
+					
+						 		<div class="form-group">
+									<label for="slCarreras">Elija la carrera:</label> 
+									<select id="slCarreras" class="form-control" name="slCarreras">											
+									</select> 
+								</div>
+								<div class="form-group">
+									<label for="slSemestres">Elija el semestre:</label> 
+									<select id="slSemestres" class="form-control" name="slSemestres">											
+									</select> 
+								</div>
+
 									
-						 </form>
-						
-				</div>
-			</div>
+								
+						</div>
+					</div>
+
+					<br>
+					
+				
+					<br>
+					<div class="row">
+						<div class="col-xs-3" style="width: 20%;">
+							<div class="text-left">
+							<button type="button" class="btn btn-primary "  id="btnAgregarMaterias" >Agregar Materias</button>
+						</div>
+						</div>
+						<div class="col-xs-9">
+							<table id='tblCarrerasMaterias' border='1px' style="width:100%;height:100px;border:1px solid black;margin: 0px auto">
+								<thead>
+									<tr>
+										<th class='text-center'>Seleccionar</th>
+										<th class='text-center'>Materia</th>
+										<th class='text-center'>Información</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class='noData' >
+										<td  colspan='3' class='text-center'>No hay información disponible</td>
+									</tr>
+								</tbody>
+							</table >
+						</div>
+					</div>
+					
+
+					<br><br><br>
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary "  id="btnGuardarCarrerasMaterias" >Guardar</button>
+					</div>
+
+			</form>
 
 	</div>
 
+
+
+
+   <!-- Modal -->
+<div id="modalAlertaModificarMateria" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style='width: 800px'>
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modificar Carrera</h4>
+      </div>
+       <form id="formDatosMaterias">
+		      <div class="modal-body">
+
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label for="slCarreras">Elija la carrera:</label> 
+								<select id="slCarreras" class="form-control" name="slCarreras">											
+								</select> 
+							</div>
+						</div>
+					</div>	
+					
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="form-group">
+								<label for="txtNombreMateriaAbreviado">Nombre materia abreviado:</label>
+								<input type="text" id="txtNombreMateriaAbreviado" name="txtNombreMateriaAbreviado"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
+							</div>
+						</div>
+					</div>	
+
+
+
+		      </div>
+		      <div class="modal-footer">
+		      		<button type="submit" class="btn btn-primary"  id="btnMdlAlertModificarMaterias">Modificar</button>
+		      		 <button type="button" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
+		      </div>
+       </form>
+    </div>
+
+  </div>
+</div>
 
 
 
@@ -191,7 +249,8 @@
         
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveCarreras">Aceptar</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveMaterias">Aceptar</button>
+
       </div>
     </div>
 
@@ -203,12 +262,14 @@
 	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrapValidator.js"></script>
-	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script> -->
-	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script> -->
+
+	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script>
+	<script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script>
 	
  	<script src="<?php echo base_url(); ?>public/js/selectElementMenu.js"></script> 
 	<script src="<?php echo base_url(); ?>public/js/cerrarSesion.js"></script> 
-	<script src="<?php echo base_url(); ?>public/js/carreras.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/carrerasMaterias.js"></script>
+
 
 
 </body>
