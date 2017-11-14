@@ -146,7 +146,7 @@ $(document).ready(function()
 				
 			}
 
-			console.log(datosCarrerasMaterias);
+			//console.log(datosCarrerasMaterias);
 
 			// $.ajax(
 			// {
@@ -230,16 +230,73 @@ $(document).ready(function()
 			          	if(result.status == 'OK')
 			          	{
 			          		let tempMaterias = '';
+			          		let tempModalInfoMaterias = '';
+
+			          		$("#containerModalsInfoMaterias").html("");
 
 			          		result.materias.forEach(function(materia) {
 						    		
-						    	tempMaterias += `	<tr data-id_materia='${materia.id_materia}'>
+						    	tempMaterias += `	<tr data-id_materia='${materia.id_materia}' style='height:50px;'>
 														<td><input type='checkbox' class="form-control" style='height: 25px;' checked='checked' /></td>
 														<td class='text-center'>${materia.nombre_completo_materia}</td>
-														<td class='text-center'><button class='btn btn-primary btnMasInfoMateria ' >Ver màs Información</button></td>
-													</tr>`
+														<td class='text-center'><input type='button' class='btn btn-primary btnMasInfoMateria' value='Ver más Información'></td>
+													</tr>`;
+
+
+								tempModalInfoMaterias =  `<div id="modalAlerta_${materia.id_materia}" class="modal fade" role="dialog">
+															<div class="modal-dialog">
+															   	<div class="modal-content">
+															      		<div class="modal-header">
+															       			<button type="button" class="close" data-dismiss="modal">&times;</button>
+															        		<h4 class="modal-title">Alerta</h4>
+															      		</div>
+																      <div class="modal-body">
+																        	
+																        	<div class="row">
+																			<div class="col-xs-12">
+																				<h2 style="text-align: center;">información adicional de la materia</h2>
+																			</div>
+																		</div>
+																		<br><br>
+																		<div class="row">
+																			<div class="col-xs-12">
+																				
+																		 		<div class="form-group">
+																						<label for="txtCreditosMateria${materia.id_materia}">Créditos materia:</label>
+																						<input type="text" id="txtCreditosMateria${materia.id_materia}" name="txtCreditosMateria${materia.id_materia}" class="form-control" placeholder="Créditos materia" minlength="1"  maxlength="4">
+																				</div>
+																				<div class="form-group">
+																					<label for="txtHorasTeoricas${materia.id_materia}">Horas teóricas:</label>
+																					<input type="text" id="txtHorasTeoricas${materia.id_materia}" name="txtHorasTeoricas${materia.id_materia}" class="form-control" placeholder="Horas teóricas" minlength="1"  maxlength="4">
+																				</div>
+																				<div class="form-group">
+																					<label for="txtHorasPracticas${materia.id_materia}">Horas prácticas:</label>
+																					<input type="text" id="txtHorasPracticas${materia.id_materia}" name="txtHorasPracticas${materia.id_materia}" class="form-control" placeholder="Horas prácticas" minlength="1"  maxlength="4">
+																				</div>
+
+																			</div>
+																		</div>
+
+																      </div>
+																      <div class="modal-footer">
+																      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlInfoMateria${materia.id_materia}">Aceptar</button>
+																      </div>
+														    	</div>
+															</div>
+														</div>`;
+
+
+								$("#containerModalsInfoMaterias").append(tempModalInfoMaterias);
+
+
 
 							});
+
+
+			          		
+
+
+							
 
 			          			$("#tblCarrerasMaterias tbody").html(tempMaterias);
 			          	}
@@ -258,12 +315,6 @@ $(document).ready(function()
 			          		}
 			          	}
 
-			          	
-
-			          	
-		
-			          	// $('#modalAlerta .modal-body').text(result.mensaje);
-			          	// $('#modalAlerta').modal('show');
 			          	
 
 			          },
@@ -313,7 +364,7 @@ $(document).ready(function()
 
 			          		result.materias.forEach(function(materia) {
 						    		
-						    	tempMaterias += `	<tr data-id_materia='${materia.id_materia}'>
+						    	tempMaterias += `	<tr data-id_materia='${materia.id_materia}' >
 														<td><input type='checkbox' class="form-control" style='height: 25px;'  /></td>
 														<td class='text-center'>${materia.nombre_completo_materia}</td>
 													</tr>`
@@ -382,10 +433,10 @@ $(document).ready(function()
 
 			arrayMaterias[index] =  $(this).closest("tr").attr("data-id_materia");
 
-			tempMaterias += `	<tr data-id_materia='${id_materia}'>
+			tempMaterias += `	<tr data-id_materia='${id_materia}' style='height:50px;'>
 														<td><input type='checkbox' class="form-control" style='height: 25px;' checked='checked' /></td>
 														<td class='text-center'>${materia}</td>
-														<td class='text-center'><button class='btn btn-primary btnMasInfoMateria ' >Ver màs Información</button></td>
+														<td class='text-center'><input type='button' class='btn btn-primary btnMasInfoMateria' value='Ver más Información'></td>
 													</tr>`
 
 
@@ -394,6 +445,7 @@ $(document).ready(function()
 	
 		if(arrayMaterias.length > 0)
 		{
+
 			let datos = 
 			{
 				ids_materias : arrayMaterias,
@@ -438,19 +490,22 @@ $(document).ready(function()
 
 
 				          		}
+
 				    			
 				          	}
 				          	else
 				          	{
-				          		// if(result.status == 'Sin datos')
-				          		// {
-				          			
-				          		// 	$('#modalAlertaAgregarMaterias').modal('show');
-				          		// }
-				          		// else
-				          		// {
-				          		// 	$('#modalAlertaAgregarMaterias .modal-body').html(result.mensaje);
-				          		// }
+				          		if(result.status == 'Sin datos')
+				          		{
+				          		
+				          			$("#tblCarrerasMaterias tbody").append(tempMaterias);
+				          			$("#modalAlertaAgregarMaterias").modal('hide');
+				          		
+				          		}
+				          		else
+				          		{
+				          			$('#modalAlertaAgregarMaterias .modal-body').html(result.mensaje);
+				          		}
 				          	}
 				          	
 				          	
@@ -474,6 +529,18 @@ $(document).ready(function()
 
 
 	});
+
+
+	$("body").on("click",".btnMasInfoMateria",function()
+	{
+
+       let id_materia = $(this).closest("tr").attr('data-id_materia')
+
+       $("#modalAlerta_"+id_materia).modal("show");
+
+
+	});
+
 
 
  });

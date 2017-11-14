@@ -138,18 +138,25 @@ class Model_CarrerasMaterias extends CI_Model
 		public function verifyMateriasAgregar($ids_materias,$clave_oficial,$id_semestre)
 		{
 
-			$sql = "select 	ma.id_materia,
-							ma.nombre_completo_materia 
-					from carreras car
-							join rel_materias_carreras rmc on(car.clave_oficial=rmc.clave_oficial)
-							join materias ma on(rmc.id_materia=ma.id_materia)
-					where 	car.clave_oficial = ?
-							and rmc.id_semestre = ?";
+			// $sql = "select 	ma.id_materia,
+			// 				ma.nombre_completo_materia 
+			// 		from carreras car
+			// 				join rel_materias_carreras rmc on(car.clave_oficial=rmc.clave_oficial)
+			// 				join materias ma on(rmc.id_materia=ma.id_materia)
+			// 		where 	car.clave_oficial = ?
+			// 				and rmc.id_semestre = ?";
 							//and ma.id_materia IN ? ";
 
-			$this->db->where_in('ma.id_materia', $ids_materias);
 
-			$query = $this->db->query($sql,array($clave_oficial,$id_semestre));		
+			$this->db->select('materias.id_materia,materias.nombre_completo_materia');
+			$this->db->from('carreras');
+			$this->db->join('rel_materias_carreras', 'rel_materias_carreras.clave_oficial = carreras.clave_oficial');
+			$this->db->join('materias', 'materias.id_materia = rel_materias_carreras.id_materia');
+			$this->db->where('carreras.clave_oficial', $clave_oficial);
+			$this->db->where('rel_materias_carreras.id_semestre', $id_semestre);
+			$this->db->where_in('materias.id_materia', $ids_materias);
+			$query = $this->db->get();
+
 
 
 			$resultado_query = array(

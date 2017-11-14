@@ -263,7 +263,11 @@
   </div>
 </div>
 
-	<br><br><br><br><br><br>
+
+<div id='containerModalsInfoMaterias'>
+</div>
+
+	<br>
 
 	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrap.min.js"></script>
