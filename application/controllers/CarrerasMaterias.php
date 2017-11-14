@@ -57,6 +57,33 @@ class CarrerasMaterias extends CI_Controller
 	}
 
 
+	public function getInfoMaterias()
+	{
+		
+		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
+		$datosSelect = $this->Model_CarrerasMaterias->getInfoMaterias();
+
+		echo json_encode($datosSelect);
+
+	}
+
+
+	public function verifyMateriasAgregar()
+	{
+		
+		$ids_materias = $_REQUEST['ids_materias'];
+		$clave_oficial = $_REQUEST['clave_oficial'];
+		$id_semestre = $_REQUEST['id_semestre'];
+
+		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
+		$datosSelect = $this->Model_CarrerasMaterias->verifyMateriasAgregar($ids_materias,$clave_oficial,$id_semestre);
+
+		echo json_encode($datosSelect);
+
+	}
+
+
+
 
 
 }

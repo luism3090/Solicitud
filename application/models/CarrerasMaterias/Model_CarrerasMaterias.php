@@ -84,4 +84,114 @@ class Model_CarrerasMaterias extends CI_Model
 		}
 
 
+		public function getInfoMaterias()
+		{
+
+			$sql = "select 	id_materia,
+							nombre_completo_materia 
+					from materias order by id_materia desc";
+
+			$query = $this->db->query($sql);		
+
+
+			$resultado_query = array(
+											'msjCantidadRegistros'=> 0,
+											'materias'=> array(),
+											 'status' => '',
+											 'mensaje' => ''
+										);
+
+
+			if($query)
+			{
+
+				if($query->num_rows()>0)
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['materias'] = $query->result(); 
+					$resultado_query['status'] = 'OK'; 
+					$resultado_query['mensaje'] = 'información obtenida';
+
+			
+				}
+				else
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['materias'] = $query->result(); 
+					$resultado_query['status'] = 'Sin datos';
+					$resultado_query['mensaje'] = 'No hay registros'; 
+				}
+
+			}
+			else{
+					$resultado_query['status'] = 'ERROR'; 
+					$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la pagina e intente de nuevo'; 
+			}
+			
+			
+			return $resultado_query;
+
+		}
+
+
+
+		public function verifyMateriasAgregar($ids_materias,$clave_oficial,$id_semestre)
+		{
+
+			$sql = "select 	ma.id_materia,
+							ma.nombre_completo_materia 
+					from carreras car
+							join rel_materias_carreras rmc on(car.clave_oficial=rmc.clave_oficial)
+							join materias ma on(rmc.id_materia=ma.id_materia)
+					where 	car.clave_oficial = ?
+							and rmc.id_semestre = ?";
+							//and ma.id_materia IN ? ";
+
+			$this->db->where_in('ma.id_materia', $ids_materias);
+
+			$query = $this->db->query($sql,array($clave_oficial,$id_semestre));		
+
+
+			$resultado_query = array(
+											'msjCantidadRegistros'=> 0,
+											'materias'=> array(),
+											 'status' => '',
+											 'mensaje' => ''
+										);
+
+
+			if($query)
+			{
+
+				if($query->num_rows()>0)
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['materias'] = $query->result(); 
+					$resultado_query['status'] = 'OK'; 
+					$resultado_query['mensaje'] = 'información obtenida';
+
+			
+				}
+				else
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['materias'] = $query->result(); 
+					$resultado_query['status'] = 'Sin datos';
+					$resultado_query['mensaje'] = 'No hay registros'; 
+				}
+
+			}
+			else{
+					$resultado_query['status'] = 'ERROR'; 
+					$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la pagina e intente de nuevo'; 
+			}
+			
+			
+			return $resultado_query;
+
+		}
+
+
+
+
 }
