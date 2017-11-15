@@ -34,7 +34,10 @@ class Model_CarrerasMaterias extends CI_Model
 		{
 
 			$sql = "select 	ma.id_materia,
-							ma.nombre_completo_materia 
+							ma.nombre_completo_materia,
+							rmc.creditos_materia,
+							rmc.horas_teoricas,
+							rmc.horas_practicas
 					from carreras car
 							join rel_materias_carreras rmc on(car.clave_oficial=rmc.clave_oficial)
 							join materias ma on(rmc.id_materia=ma.id_materia)

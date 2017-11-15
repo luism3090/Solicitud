@@ -161,14 +161,16 @@
 							<table id='tblCarrerasMaterias' border='1px' style="width:100%;height:100px;border:1px solid black;margin: 0px auto">
 								<thead>
 									<tr>
-										<th class='text-center'>Seleccionar</th>
 										<th class='text-center'>Materia</th>
-										<th class='text-center'>Información</th>
+										<th class='text-center'>Créditos materia</th>
+										<th class='text-center'>Horas teóricas</th>
+										<th class='text-center'>Horas prácticas</th>
+										<th class='text-center'>Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr class='noData' >
-										<td  colspan='3' class='text-center'>No hay información disponible</td>
+										<td  colspan='5' class='text-center'>No hay información disponible</td>
 									</tr>
 								</tbody>
 							</table >
@@ -256,7 +258,7 @@
       </div>
       <div class="modal-footer">
       <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveMaterias">Aceptar</button>
-
+			
       </div>
     </div>
 
@@ -264,8 +266,9 @@
 </div>
 
 
-<div id='containerModalsInfoMaterias'>
-</div>
+
+
+
 
 	<br>
 
