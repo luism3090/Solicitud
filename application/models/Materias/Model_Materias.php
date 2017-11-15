@@ -233,30 +233,6 @@ class Model_Materias extends CI_Model
 
 
 
-		public function cargarSelectCarreras()
-		{
-
-			$sql = "select clave_oficial,nombre_carrera from carreras order by clave_oficial";
-
-			$query = $this->db->query($sql);		
-			
-			return $query->result();
-
-		}
-
-
-		public function cargarSelectSemestres()
-		{
-
-			$sql = "select id_semestre,nombre_semestre from semestres order by id_semestre";
-
-			$query = $this->db->query($sql);		
-			
-			return $query->result();
-
-		}
-
-
 
 
 

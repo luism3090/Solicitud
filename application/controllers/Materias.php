@@ -84,30 +84,7 @@ class Materias extends CI_Controller
       }
 
 
-     public function cargarSelectCarreras()
-	{
-		
-		$this->load->model('Materias/Model_Materias'); 
-		$datosSelect = $this->Model_Materias->cargarSelectCarreras();
-
-
-
-		echo json_encode($datosSelect);
-
-	}
-
-	 public function cargarSelectSemestres()
-	{
-		
-		$this->load->model('Materias/Model_Materias'); 
-		$datosSelect = $this->Model_Materias->cargarSelectSemestres();
-
-
-
-		echo json_encode($datosSelect);
-
-	}
-
+     
 
 
 

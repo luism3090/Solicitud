@@ -19,11 +19,10 @@ class CarrerasMaterias extends CI_Controller
 
     public function cargarSelectCarreras()
 	{
-		
-		$this->load->model('Materias/Model_Materias'); 
-		$datosSelect = $this->Model_Materias->cargarSelectCarreras();
 
 
+		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
+		$datosSelect = $this->Model_CarrerasMaterias->cargarSelectCarreras();
 
 		echo json_encode($datosSelect);
 
@@ -84,6 +83,38 @@ class CarrerasMaterias extends CI_Controller
 
 
 
+	 public function deleteMaterias()
+	{
+		
+		$clave_oficial = $_REQUEST['clave_oficial'];
+		$id_semestre = $_REQUEST['id_semestre'];
+		$id_materia = $_REQUEST['id_materia'];
+
+
+		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
+		$resultado_query = $this->Model_CarrerasMaterias->deleteMaterias($clave_oficial,$id_semestre,$id_materia);
+
+
+		echo json_encode($resultado_query);
+
+	}
+
+
+	 public function guardarCarrerasMaterias()
+	{
+		
+		$datosMaterias = $_REQUEST['datosMaterias'];
+		$clave_oficial = $_REQUEST['clave_oficial'];
+		$id_semestre = $_REQUEST['id_semestre'];
+
+
+		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
+		$resultado_query = $this->Model_CarrerasMaterias->guardarCarrerasMaterias($datosMaterias,$clave_oficial,$id_semestre);
+
+
+		echo json_encode($resultado_query);
+
+	}
 
 
 }

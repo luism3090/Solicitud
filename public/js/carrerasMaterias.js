@@ -150,12 +150,10 @@ $(document).ready(function()
 
 				var datosCarrerasMaterias = {
 											
-											clave_oficial:$clave_oficial,
 											id_materia:$(this).attr("data-id_materia"),
-											creditos_materia:$(this).find("input").eq(1).val(),
-											horas_teoricas:$(this).find("input").eq(2).val(),
-											horas_practicas:$(this).find("input").eq(3).val(),
-											id_semestre:$id_semestre
+											creditos_materia:$(this).find("input").eq(0).val(),
+											horas_teoricas:$(this).find("input").eq(1).val(),
+											horas_practicas:$(this).find("input").eq(2).val()
 				
 											}
 
@@ -164,24 +162,27 @@ $(document).ready(function()
 
 			})
 
-			console.log(datosRelCarrerasMaterias);
+			//console.log(datosRelCarrerasMaterias);
 
 			$.ajax(
 			{
 	          type: "POST",
 	          dataType:"json",
 	          url: base_url+"CarrerasMaterias/guardarCarrerasMaterias",
-	          data: datosMateria,
+	          data: {datosMaterias:datosRelCarrerasMaterias,clave_oficial:$clave_oficial,id_semestre:$id_semestre},
 	          async: true,
 	          success: function(result)
 		          {
+
+		          	console.log(result);
 	
 		          	$('#modalAlerta .modal-body').text(result.mensaje);
 		          	$('#modalAlerta').modal('show');
-		          	if(result.resultado == 'OK')
+		          	if(result.status == 'OK')
 		          	{
-		          		$("#btnGuardarMateria").prop("resultado",result.resultado);
 		          		
+		          		getInfoCarrerasMaterias();
+		          		$("#btnGuardarCarrerasMaterias").attr('disabled',false); 
 		          	}
 
 		          },
@@ -652,11 +653,71 @@ $(document).ready(function()
 
 	});
 
+	
+	$("body").on("click","#btnMdlAlertEliminarMaterias",function()
+	{
+		
+		let datos = $("#btnMdlAlertEliminarMaterias").prop("datos");
+
+		$.ajax(
+					{
+			          type: "POST",
+			          dataType:"json",
+			          url: base_url+"CarrerasMaterias/deleteMaterias",
+			          data: datos,
+			          async: true,
+			          success: function(result)
+				          {
+
+				          	if(result.status == 'OK')
+				          	{
+
+				          		$(this).closest("tr").remove();
+
+				          		$("#modalAlerta .modal-body").html(result.mensaje);
+				          		$("#modalAlerta").modal("show");
+				          		getInfoCarrerasMaterias();
+
+				    			
+				          	}
+				          	else
+				          	{
+				          		$("#modalAlerta .modal-body").html(result.mensaje);
+				          		$("#modalAlerta").modal("show");
+				          	}
+				          	
+				          	
+				          },
+					   error:function(result)
+						  {
+						  	console.log(result.responseText);
+						  	//$("#error").html(data.responseText); 
+						  }
+			          
+			        });	
+
+
+
+
+	});
+
 
 	$("body").on("click",".btnEliminarMateria",function()
 	{
 
-		$(this).closest("tr").remove();
+		let materia = $(this).closest("tr").find("td").eq(0).text();
+
+		$("#modalAlertaEliminarMaterias .modal-body").html(`<h5>¿Desea eliminar la materia de <strong>${materia}</strong>?<h5>`);
+		$("#modalAlertaEliminarMaterias").modal("show");
+
+		  let datos = {
+	   					id_materia : $(this).closest("tr").attr('data-id_materia'),
+						clave_oficial : $("#slCarreras").val(),
+						id_semestre : $("#slSemestres").val()
+	   			   }
+
+		$("#btnMdlAlertEliminarMaterias").prop("datos",datos);
+
 
 	});
 

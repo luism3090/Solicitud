@@ -177,6 +177,8 @@
   </div>
 </div>
 
+
+
 	<br><br><br><br><br><br>
 
 	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.min.js"></script>
