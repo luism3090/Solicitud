@@ -211,7 +211,7 @@
 					</div>	
 					
 					<div class="row">
-						<div class="col-xs-12">
+						<div class="col-xs-12" style="height: 360px;overflow: auto;">
 							<table id='tblMaterias' border='1px' style="width:100%;height:100px;border:1px solid black;margin: 0px auto">
 								<thead>
 									<tr>

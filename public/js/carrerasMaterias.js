@@ -439,7 +439,7 @@ $(document).ready(function()
 		          async: true,
 		          success: function(result)
 			          {
-			          	debugger;
+			          	
 
 			          	if(result.status == 'OK')
 			          	{
