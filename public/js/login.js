@@ -81,17 +81,26 @@ var base_url = $("body").attr("data-base-url");
 		          {
 		          	//console.log(result);
 
-		          	if(result.msjCantidadRegistros > 0)
+		          	if( typeof(result.redirect) == 'undefined')
 		          	{
-		          		//location.href = result.base_url;
-		          		location.href = result.base_url;
+		          		if(result.msjCantidadRegistros > 0)
+		          		{
+		          			//location.href = result.base_url;
+		          			location.href = result.base_url;
+		          		}
+		          		else
+		          		{
+		          			$('#modalAlerta .modal-body > p').text(result.msjNoHayRegistros);
+		          			$('#modalAlerta').modal('show');
+		          		}
+
 		          	}
 		          	else
 		          	{
-		          		$('#modalAlerta .modal-body > p').text(result.msjNoHayRegistros);
-		          		$('#modalAlerta').modal('show');
+		          		location.href = result.url;
 		          	}
 
+		          	
 		          },
 			   error:function(result)
 				  {

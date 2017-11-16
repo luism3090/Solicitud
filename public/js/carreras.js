@@ -53,20 +53,29 @@ $(document).ready(function()
                                                   {
                                                       type: "POST",
                                                       url: base_url+"Carreras/checkClaveOficial",
-                                                    dataType:"json",
+                                                      dataType:"json",
                                                       data: datoCarrera,
-                                                       async: false,
+                                                      async: false,
                                                       success: function(result)
                                                           {
 
-                                                              if(result.resultado == 'NO_DISPONIBLE')
-                                                              {
-                                                                 valida = false;
-                                                              }
-                                                              else
-                                                              {
-                                                                valida = true;
-                                                              }
+                                                          	  if( typeof(result.redirect) == 'undefined')
+                                                          	  {
+
+	                                                              if(result.resultado == 'NO_DISPONIBLE')
+	                                                              {
+	                                                                 valida = false;
+	                                                              }
+	                                                              else
+	                                                              {
+	                                                                valida = true;
+	                                                              }
+
+	                                                          }
+	                                                          else
+	                                                          {
+	                                                          	location.href = result.url;
+	                                                          }
                                                            
                                                           },
                                                      error:function(result)
@@ -194,14 +203,23 @@ $(document).ready(function()
 	          async: true,
 	          success: function(result)
 		          {
-		          	
-		          	$('#modalAlerta .modal-body').text(result.mensaje);
-		          	$('#modalAlerta').modal('show');
-		          	if(result.resultado == 'OK')
+
+		          	if( typeof(result.redirect) == 'undefined')
 		          	{
-		          		$("#btnGuardarCarrera").prop("resultado",result.resultado);
-		          		
+		          		$('#modalAlerta .modal-body').text(result.mensaje);
+		          		$('#modalAlerta').modal('show');
+		          		if(result.resultado == 'OK')
+		          		{
+		          			$("#btnGuardarCarrera").prop("resultado",result.resultado);
+		          			
+		          		}
 		          	}
+		          	else
+		          	{
+		          		location.href = result.url;
+		          	}
+		          	
+		          	
 
 		          },
 			   error:function(result)

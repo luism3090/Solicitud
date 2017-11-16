@@ -25,60 +25,70 @@ class HookValidarDatosUsuario
 
 		if($controlador == 'Login')
 		{
-			if($this->ci->session->userdata('logueado') === true)
+
+			if( $this->ci->input->is_ajax_request())
 			{
 
-				redirect('Home');
-				exit();
-			
+				if($this->ci->session->userdata('logueado') === true)
+				{
+
+					$datos["redirect"]=true;
+					$datos["url"]= base_url()."home";
+
+					echo json_encode($datos);
+					
+					exit();
+
+				}
+
 			}
+			else
+			{
+				if($this->ci->session->userdata('logueado') === true)
+				{
+					redirect('Home');
+					exit();
+				}
+			}
+
+			
+
+
 		}
 		else
 		{
 			//exit();
-			if($this->ci->session->userdata('logueado') === null)
+
+			if( $this->ci->input->is_ajax_request())
 			{
-				// if( $this->ci->input->is_ajax_request())
-				// {
+				if($this->ci->session->userdata('logueado') === null)
+				{
 
-				// 	$datos["baja"]=true;
-				// 	$datos["url"]= base_url()."Login";
+					$datos["redirect"]=true;
+					$datos["url"]= base_url()."Login";
 
-				// 	echo json_encode($datos);
-
-				// 	//redirect(, 'location', 302);
+					echo json_encode($datos);
 					
-				// 	exit();
-					
-				// }
-				// else
-				// {
+					exit();
 
-					// if($controlador != 'RegistroPersonal' )
-					// {
-					// 	redirect('Login');
-					// 	exit();
-
-					// }
-					// else
-					// {
-					// 	if($controlador != 'Estudiantes' )
-					// 	{
-					// 		redirect('Login');
-					// 		exit();
-
-					// 	}
-					// }
+				}
 
 
-					
-					
-				// }
-				
-
-
-				
 			}
+			else
+			{
+				if($this->ci->session->userdata('logueado') === null)
+				{
+
+					redirect('Login');
+					exit();
+
+					
+				}
+			}
+
+
+			
 	
 		}
 		
