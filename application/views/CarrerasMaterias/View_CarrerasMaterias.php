@@ -205,7 +205,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="form-group">
-								<h3> Agregue las materias para la carrera seleccionada:</h3> 
+								<h4> Agregue las materias de la carrera de <strong id='stCarrera' ></strong> para <strong id='stSemestre' ></strong>:</h4> 
 							</div>
 						</div>
 					</div>	
@@ -233,7 +233,7 @@
 		      </div>
 		      <div class="modal-footer">
 		      		<button type="submit" class="btn btn-primary"   id="btnMdlAgregarMaterias">Aceptar</button>
-		      		 <button type="button" class="btn btn-primary" data-dismiss="modal" >Cancelar</button>
+		      		 <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
 		      </div>
      
     </div>

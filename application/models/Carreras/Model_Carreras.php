@@ -417,6 +417,65 @@
 		}
 
 
+		public function deleteCarreras($clave_oficial)
+		{
+
+			$sql =	"select 		clave_oficial,
+										carrera,
+										nombre_carrera,
+										nombre_reducido,
+										carga_maxima,
+										carga_minima,
+										creditos_totales
+							 from carreras 
+							 		where clave_oficial = ? ";
+			
+
+			$query = $this->db->query($sql,array($clave_oficial));
+
+
+			$resultado_query = array(
+											'msjCantidadRegistros'=> 0,
+											'carrera'=> array(),
+											 'status' => '',
+											 'mensaje' => ''
+										);
+
+
+			if($query)
+			{
+
+				if($query->num_rows()>0)
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['carrera'] = $query->result(); 
+					$resultado_query['status'] = 'OK'; 
+					$resultado_query['mensaje'] = 'información obtenida';
+
+			
+				}
+				else
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['carrera'] = $query->result(); 
+					$resultado_query['status'] = 'Sin datos';
+					$resultado_query['mensaje'] = 'No hay registros'; 
+				}
+
+			}
+			else{
+					$resultado_query['status'] = 'ERROR'; 
+					$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la pagina e intente de nuevo'; 
+			}
+			
+
+			return $resultado_query;
+
+
+
+		}
+
+
 
 	}
 ?>

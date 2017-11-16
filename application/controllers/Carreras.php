@@ -132,6 +132,22 @@ class Carreras extends CI_Controller
       }
 
 
+       public function deleteCarreras()
+    {
+      
+          $clave_oficial = $_REQUEST['claveOficial'];
+          
+
+          $this->load->model('Carreras/Model_Carreras'); 
+          $resultado_query = $this->Model_Carreras->deleteCarreras($clave_oficial);
+        
+
+          echo json_encode($resultado_query);
+     
+
+    }
+
+
 }
 
 ?>

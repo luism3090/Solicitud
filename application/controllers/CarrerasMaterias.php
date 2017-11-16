@@ -59,8 +59,23 @@ class CarrerasMaterias extends CI_Controller
 	public function getInfoMaterias()
 	{
 		
+		$clave_oficial = $_REQUEST['clave_oficial'];
+		$id_semestre = $_REQUEST['id_semestre'];
+		$arrayMaterias = $_REQUEST['arrayMaterias'];
+
 		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
-		$datosSelect = $this->Model_CarrerasMaterias->getInfoMaterias();
+		$datosSelect = $this->Model_CarrerasMaterias->getInfoMaterias($clave_oficial,$id_semestre,$arrayMaterias);
+
+		echo json_encode($datosSelect);
+
+	}
+
+
+	public function getInfoMaterias2()
+	{
+
+		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
+		$datosSelect = $this->Model_CarrerasMaterias->getInfoMaterias2();
 
 		echo json_encode($datosSelect);
 

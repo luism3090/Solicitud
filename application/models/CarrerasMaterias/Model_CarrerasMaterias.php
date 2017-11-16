@@ -87,14 +87,31 @@ class Model_CarrerasMaterias extends CI_Model
 		}
 
 
-		public function getInfoMaterias()
+		public function getInfoMaterias($clave_oficial,$id_semestre,$arrayMaterias)
 		{
 
-			$sql = "select 	id_materia,
-							nombre_completo_materia 
-					from materias order by id_materia desc";
+			// $sql = "select 	id_materia,nombre_completo_materia
+			// 		from materias 
+			// 		where 	
+			// 		id_materia not in (
+			// 									select 	ma2.id_materia
+			// 									from carreras car2
+			// 											join rel_materias_carreras rmc2 on(car2.clave_oficial=rmc2.clave_oficial)
+			// 											join materias ma2 on(rmc2.id_materia=ma2.id_materia)
+			// 									where 	car2.clave_oficial = ?
+			// 											and rmc2.id_semestre = ?
+			// 									)";
 
-			$query = $this->db->query($sql);		
+			
+					$this->db->select('id_materia,nombre_completo_materia');
+					$this->db->from('materias');
+					$this->db->where_not_in('id_materia', $arrayMaterias);
+					$query = $this->db->get();
+		
+
+		
+
+			// $query = $this->db->query($sql,array($arrayMaterias,$id_semestre));		
 
 
 			$resultado_query = array(
@@ -135,6 +152,55 @@ class Model_CarrerasMaterias extends CI_Model
 			return $resultado_query;
 
 		}
+
+
+		public function getInfoMaterias2()
+		{
+			
+			$this->db->select('id_materia,nombre_completo_materia');
+			$this->db->from('materias');
+			$query = $this->db->get();
+
+
+			$resultado_query = array(
+											'msjCantidadRegistros'=> 0,
+											'materias'=> array(),
+											 'status' => '',
+											 'mensaje' => ''
+										);
+
+
+			if($query)
+			{
+
+				if($query->num_rows()>0)
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['materias'] = $query->result(); 
+					$resultado_query['status'] = 'OK'; 
+					$resultado_query['mensaje'] = 'información obtenida';
+
+			
+				}
+				else
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['materias'] = $query->result(); 
+					$resultado_query['status'] = 'Sin datos';
+					$resultado_query['mensaje'] = 'No hay registros'; 
+				}
+
+			}
+			else{
+					$resultado_query['status'] = 'ERROR'; 
+					$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la pagina e intente de nuevo'; 
+			}
+			
+			
+			return $resultado_query;
+
+		}
+
 
 
 

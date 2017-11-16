@@ -342,6 +342,52 @@ $(document).on('ready',function()
          });
 
 
+          $("body").on("click",".btnEliminarCarrera",function()
+          {
+
+             let clave_oficial = tblCarreras.rows($(this).closest("tr").index()).data().pluck(0)[0];
+
+
+                $.ajax(
+                 {
+                       type: "POST",
+                       dataType:"json",
+                       url: base_url+"Carreras/deleteCarreras",
+                       data: {clave_oficial:clave_oficial},
+                       async: true,
+                       success: function(result)
+                         {
+
+                              if(result.status != "ERROR")
+                              {
+                                  
+                                   $("#modalAlertaModificarCarrera").modal("show");
+                                   
+                              }
+                              else
+                              {
+                                   $('#modalAlerta .modal-body').text(result.mensaje);
+                                   $('#modalAlerta').modal('show');
+                              }
+                           
+                          
+
+                         },
+                    error:function(result)
+                     {
+                       console.log(result.responseText);
+                       //$("#error").html(data.responseText); 
+                     }
+                       
+                     });
+
+
+            
+            
+          });
+
+
+
 
 });
    

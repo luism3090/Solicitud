@@ -42,6 +42,11 @@ $(document).ready(function()
 	                   $("#slCarreras").html(options);
 
 	                }
+	                else
+	                {
+	                	$("#modalAlerta .modal-body").html("No se encontraron carreras disponibles porfavor agregue carreras para poder continuar");
+						$("#modalAlerta").modal("show");
+	                }
 	              
 	            },
 	       error:function(result)
@@ -84,6 +89,7 @@ $(document).ready(function()
 	                   $("#slSemestres").html(options);
 
 	                }
+
 	              
 	            },
 	       error:function(result)
@@ -276,7 +282,7 @@ $(document).ready(function()
 				 												<input type="text" id="txtHorasPracticas${materia.id_materia}" name="txtCreditoss${materia.id_materia}" class="form-control" value='${materia.horas_practicas}' placeholder="Horas prácticas" minlength="1"  maxlength="4"  style='margin: 14px auto;width:90%'>
 															</div>
 														</td>
-														<td><input type='button' class="btn btn-primary btnEliminarMateria"  value='Eliminar' /></td>
+														<td><input type='button' data-save='true' id='btnEliminarMateria_${materia.id_materia}' class="btn btn-primary btnEliminarMateria"  value='Eliminar' /></td>
 													</tr>`;
 
 
@@ -388,35 +394,71 @@ $(document).ready(function()
 			else
 			{
 
+				let arrayMaterias2 = [];
+
+				$('#tblCarrerasMaterias tbody tr').each(function(index)
+          		{
+          			arrayMaterias2[index] = $(this).attr("data-id_materia");
+
+
+          		});
+
+				let datos;
+				let url_=""
+
+				if( $('#tblCarrerasMaterias tbody tr td').length > 1)
+				{
+					 datos = {
+								clave_oficial: $("#slCarreras").val(),
+								id_semestre: $("#slSemestres").val(),
+								arrayMaterias: arrayMaterias2
+					}
+
+					url_ = base_url+"CarrerasMaterias/getInfoMaterias";
+				}
+				else
+				{
+					 datos = {
+								clave_oficial: $("#slCarreras").val(),
+								id_semestre: $("#slSemestres").val(),
+					}
+
+					url_ = base_url+"CarrerasMaterias/getInfoMaterias2";
+				}
+
+          		
+
+
 				
 				$.ajax(
 				{
 		          type: "POST",
 		          dataType:"json",
-		          url: base_url+"CarrerasMaterias/getInfoMaterias",
-		          data: '',
+		          url: url_,
+		          data: datos,
 		          async: true,
 		          success: function(result)
 			          {
+			          	debugger;
 
 			          	if(result.status == 'OK')
 			          	{
 			          		let tempMaterias = '';
 
+			          		
 			          		result.materias.forEach(function(materia) {
-						    		
-						    	tempMaterias += `	<tr data-id_materia='${materia.id_materia}' >
+						    	
+						    		tempMaterias += `	<tr data-id_materia='${materia.id_materia}' >
 														<td><input type='checkbox' class="form-control" style='height: 25px;'  /></td>
 														<td class='text-center'>${materia.nombre_completo_materia}</td>
-													</tr>`
-
-								
-
-
+													</tr>`;
 
 							});
 
 			          			$("#tblMaterias tbody").html(tempMaterias);
+			          			$("#modalAlertaAgregarMaterias #stCarrera").text($("#slCarreras option:selected").text());
+			          			$("#modalAlertaAgregarMaterias #stSemestre").text($("#slSemestres option:selected").text());
+			          			
 
 			          			$('#modalAlertaAgregarMaterias').modal('show');
 			          	}
@@ -435,14 +477,6 @@ $(document).ready(function()
 			          			$('#modalAlertaAgregarMaterias .modal-body').html(result.mensaje);
 			          		}
 			          	}
-
-
-			          		// $('#modalAlertaAgregarMaterias .modal-body #tblMaterias').text(result.mensaje);
-
-
-			          		// $('#modalAlertaAgregarMaterias').modal('show');
-			          	
-			          	
 			          	
 			          },
 				   error:function(result)
@@ -467,8 +501,8 @@ $(document).ready(function()
 	{
 
 		let tempMaterias = '';
-		let arrayMaterias = [];
-
+		var arrayMaterias = [];
+		
 
 		//$("#tblCarrerasMaterias tbody").html("");
 
@@ -482,173 +516,112 @@ $(document).ready(function()
 			arrayMaterias[index] =  $(this).closest("tr").attr("data-id_materia");
 
 		});
-
 	
 		if(arrayMaterias.length > 0)
 		{
 
-			let datos = 
-			{
-				ids_materias : arrayMaterias,
-				clave_oficial: $("#slCarreras").val(),
-				id_semestre: $("#slSemestres").val()
-			}
-			
+			$("body #tblCarrerasMaterias tbody tr.noData").remove();
 
-			$.ajax(
-					{
-			          type: "POST",
-			          dataType:"json",
-			          url: base_url+"CarrerasMaterias/verifyMateriasAgregar",
-			          data: datos,
-			          async: true,
-			          success: function(result)
-				          {
+  			$('#tblMaterias input[type="checkbox"]:checked').each(function(index)
+  			{
 
-				          	if(result.status == 'OK')
-				          	{
-				          		if(result.msjCantidadRegistros > 0)
-				          		{
-          			          		// let materias = 'Las materia(s) :\n\n ';
-          			          		let materias = '<h5>Las materia(s) :<br><br><br> ';
+  				let id_materia = $(this).closest("tr").attr("data-id_materia");
 
-          			          		materias += '<ol>';
+  				let materia = $(this).closest("tr").find("td").eq(1).text();
 
-          			          		result.materias.forEach(function(materia) {
-          						    		
-          						    	// materias += `${materia.nombre_completo_materia}\n `;
-          						    	 materias += `<li style='margin-left:10px' >${materia.nombre_completo_materia}</li> <br><br> `;
-
-          							});
-
-          							// materias += `\n\nya fueron agregadas a la carrera y semestre elegido `;
-          							materias += `</ol><br> ya fueron agregadas a la carrera y semestre elegido para continuar desmarquelas de la tabla de agregar materias</h5>`;
-
-          							//alert(materias);
-
-          							$("#modalAlerta .modal-body").html(materias);
-          							$("#modalAlerta").modal("show");
+  				arrayMaterias[index] =  $(this).closest("tr").attr("data-id_materia");
 
 
-				          		}
+			    	tempMaterias = `	<tr data-id_materia='${id_materia}' style='height:50px;'>
+											<td class='text-center'>${materia}</td>
+											<td class='text-center'>
+												<div class="form-group">
+	 												<input type="text" id="txtCreditoss${id_materia}" name="txtCreditoss${id_materia}" class="form-control" placeholder="Horas teóricas" minlength="1"  maxlength="4" style='margin: 14px auto;width:90%'>
+												</div>
+											</td>
+											<td class='text-center'>
+												<div class="form-group">
+	 												<input type="text" id="txtHorasTeoricas${id_materia}" name="txtCreditoss${id_materia}" class="form-control" placeholder="Horas teóricas" minlength="1"  maxlength="4" style='margin: 14px auto;width:90%'>
+												</div>
+											</td>
+											<td class='text-center'>
+												<div class="form-group">
+	 												<input type="text" id="txtHorasPracticas${id_materia}" name="txtCreditoss${id_materia}" class="form-control" placeholder="Horas prácticas" minlength="1"  maxlength="4"  style='margin: 14px auto;width:90%'>
+												</div>
+											</td>
+											<td><input type='button' data-save='false' id='btnEliminarMateria_${id_materia}' class="btn btn-primary btnEliminarMateria" value='Eliminar' /></td>
+										</tr>`;
 
-				    			
-				          	}
-				          	else
-				          	{
-				          		if(result.status == 'Sin datos')
-				          		{
-				          		
-				          			$('#tblMaterias input[type="checkbox"]:checked').each(function(index)
-				          			{
+  												
 
-				          				let id_materia = $(this).closest("tr").attr("data-id_materia");
+						$("body #tblCarrerasMaterias tbody").append(tempMaterias);
 
-				          				let materia = $(this).closest("tr").find("td").eq(1).text();
+							$('#formCarrerasMaterias').bootstrapValidator('addField',`txtCreditoss${id_materia}`,{
+								group: '.form-group',
+				                validators: {
+				                    notEmpty: {
+				                        message: 'Este campo es requerido'
+				                    },
+				                     regexp: {
+			                            regexp: /^[0-9]+$/,
 
-				          				arrayMaterias[index] =  $(this).closest("tr").attr("data-id_materia");
+			                            message: 'Solo debe ingresar números',
 
+			                        },
 
-									    	tempMaterias = `	<tr data-id_materia='${id_materia}' style='height:50px;'>
-																	<td class='text-center'>${materia}</td>
-																	<td class='text-center'>
-																		<div class="form-group">
-							 												<input type="text" id="txtCreditoss${id_materia}" name="txtCreditoss${id_materia}" class="form-control" placeholder="Horas teóricas" minlength="1"  maxlength="4" style='margin: 14px auto;width:90%'>
-																		</div>
-																	</td>
-																	<td class='text-center'>
-																		<div class="form-group">
-							 												<input type="text" id="txtHorasTeoricas${id_materia}" name="txtCreditoss${id_materia}" class="form-control" placeholder="Horas teóricas" minlength="1"  maxlength="4" style='margin: 14px auto;width:90%'>
-																		</div>
-																	</td>
-																	<td class='text-center'>
-																		<div class="form-group">
-							 												<input type="text" id="txtHorasPracticas${id_materia}" name="txtCreditoss${id_materia}" class="form-control" placeholder="Horas prácticas" minlength="1"  maxlength="4"  style='margin: 14px auto;width:90%'>
-																		</div>
-																	</td>
-																	<td><input type='button' class="btn btn-primary btnEliminarMateria" value='Eliminar' /></td>
-																</tr>`;
+				                }
+							});
 
-				          												
+							$('#formCarrerasMaterias').bootstrapValidator('addField',`txtHorasTeoricas${id_materia}`,{
+								group: '.form-group',
+				                validators: {
+				                    notEmpty: {
+				                        message: 'Este campo es requerido'
+				                    },
+            	                     regexp: {
+                                        regexp: /^[0-9]+$/,
 
-  											$("body #tblCarrerasMaterias tbody").append(tempMaterias);
+                                        message: 'Solo debe ingresar números',
 
-  												$('#formCarrerasMaterias').bootstrapValidator('addField',`txtCreditoss${id_materia}`,{
-  													group: '.form-group',
-  									                validators: {
-  									                    notEmpty: {
-  									                        message: 'Este campo es requerido'
-  									                    },
-  									                     regexp: {
-  								                            regexp: /^[0-9]+$/,
+                                    },
 
-  								                            message: 'Solo debe ingresar números',
+				                }
+							});
 
-  								                        },
+							$('#formCarrerasMaterias').bootstrapValidator('addField',`txtHorasPracticas${id_materia}`,{
+								group: '.form-group',
+				                validators: {
+				                    notEmpty: {
+				                        message: 'Este campo es requerido'
+				                    },
+				                     regexp: {
+			                            regexp: /^[0-9]+$/,
 
-  									                }
-  												});
+			                            message: 'Solo debe ingresar números',
 
-  												$('#formCarrerasMaterias').bootstrapValidator('addField',`txtHorasTeoricas${id_materia}`,{
-  													group: '.form-group',
-  									                validators: {
-  									                    notEmpty: {
-  									                        message: 'Este campo es requerido'
-  									                    },
-  				                	                     regexp: {
-  				                                            regexp: /^[0-9]+$/,
+			                        },
 
-  				                                            message: 'Solo debe ingresar números',
-
-  				                                        },
-
-  									                }
-  												});
-
-  												$('#formCarrerasMaterias').bootstrapValidator('addField',`txtHorasPracticas${id_materia}`,{
-  													group: '.form-group',
-  									                validators: {
-  									                    notEmpty: {
-  									                        message: 'Este campo es requerido'
-  									                    },
-  									                     regexp: {
-  								                            regexp: /^[0-9]+$/,
-
-  								                            message: 'Solo debe ingresar números',
-
-  								                        },
-
-  									                }
-  												});
+				                }
+							});
 
 
 
 
-				          			});
+  			});
 
-				          			
-				          			$("#modalAlertaAgregarMaterias").modal('hide');
-
-
-				          		
-				          		}
-				          		else
-				          		{
-				          			$('#modalAlertaAgregarMaterias .modal-body').html(result.mensaje);
-				          		}
-				          	}
-				          	
-				          	
-				          },
-					   error:function(result)
-						  {
-						  	console.log(result.responseText);
-						  	//$("#error").html(data.responseText); 
-						  }
-			          
-			        });	
+  			
+  			$("#modalAlertaAgregarMaterias").modal('hide');
 
 
+
+		
+
+
+		}
+		else
+		{
+			$("#modalAlerta .modal-body").html("Selecciona las materias a agregar");
+			$("#modalAlerta").modal("show");
 		}
 
 	});
@@ -659,44 +632,59 @@ $(document).ready(function()
 		
 		let datos = $("#btnMdlAlertEliminarMaterias").prop("datos");
 
-		$.ajax(
-					{
-			          type: "POST",
-			          dataType:"json",
-			          url: base_url+"CarrerasMaterias/deleteMaterias",
-			          data: datos,
-			          async: true,
-			          success: function(result)
-				          {
+		if(datos.dataSave == 'false')
+		{
+			$("#"+datos.rowToDelete).closest("tr").remove();
+			 $("#btnGuardarCarrerasMaterias").attr('disabled',false); 
+			 $("#formCarrerasMaterias").bootstrapValidator();
+			//$("#formCarrerasMaterias").bootstrapValidator('resetForm', true);
+		}
+		else
+		{
+			$.ajax(
+						{
+				          type: "POST",
+				          dataType:"json",
+				          url: base_url+"CarrerasMaterias/deleteMaterias",
+				          data: datos,
+				          async: true,
+				          success: function(result)
+					          {
 
-				          	if(result.status == 'OK')
-				          	{
+					          	if(result.status == 'OK')
+					          	{
 
-				          		$(this).closest("tr").remove();
+					          		$("#"+datos.rowToDelete).closest("tr").remove();
 
-				          		$("#modalAlerta .modal-body").html(result.mensaje);
-				          		$("#modalAlerta").modal("show");
-				          		getInfoCarrerasMaterias();
+					          		$("#modalAlerta .modal-body").html(result.mensaje);
+					          		$("#modalAlerta").modal("show");
+					          		getInfoCarrerasMaterias();
+					          		 $("#btnGuardarCarrerasMaterias").attr('disabled',false); 
+					          		 $("#formCarrerasMaterias").bootstrapValidator();
+					          		//$("#formCarrerasMaterias").bootstrapValidator('resetForm', true);
 
-				    			
-				          	}
-				          	else
-				          	{
-				          		$("#modalAlerta .modal-body").html(result.mensaje);
-				          		$("#modalAlerta").modal("show");
-				          	}
-				          	
-				          	
-				          },
-					   error:function(result)
-						  {
-						  	console.log(result.responseText);
-						  	//$("#error").html(data.responseText); 
-						  }
-			          
-			        });	
+					    			
+					          	}
+					          	else
+					          	{
+					          		$("#modalAlerta .modal-body").html(result.mensaje);
+					          		$("#modalAlerta").modal("show");
+					          	}
+					          	
+					          	
+					          },
+						   error:function(result)
+							  {
+							  	console.log(result.responseText);
+							  	//$("#error").html(data.responseText); 
+							  }
+				          
+				        });	
 
 
+		}
+
+		
 
 
 	});
@@ -713,10 +701,14 @@ $(document).ready(function()
 		  let datos = {
 	   					id_materia : $(this).closest("tr").attr('data-id_materia'),
 						clave_oficial : $("#slCarreras").val(),
-						id_semestre : $("#slSemestres").val()
+						id_semestre : $("#slSemestres").val(),
+						dataSave : $(this).attr("data-save"),
+						rowToDelete: $(this).attr("id")
 	   			   }
 
 		$("#btnMdlAlertEliminarMaterias").prop("datos",datos);
+
+
 
 
 	});
