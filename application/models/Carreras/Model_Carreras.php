@@ -420,15 +420,9 @@
 		public function deleteCarreras($clave_oficial)
 		{
 
-			$sql =	"select 		clave_oficial,
-										carrera,
-										nombre_carrera,
-										nombre_reducido,
-										carga_maxima,
-										carga_minima,
-										creditos_totales
-							 from carreras 
-							 		where clave_oficial = ? ";
+			$sql =	"select distinct clave_oficial 
+					from rel_materias_carreras 
+					where clave_oficial = ? ";
 			
 
 			$query = $this->db->query($sql,array($clave_oficial));
@@ -449,17 +443,30 @@
 				{
 					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
 					$resultado_query['carrera'] = $query->result(); 
-					$resultado_query['status'] = 'OK'; 
-					$resultado_query['mensaje'] = 'información obtenida';
+					$resultado_query['status'] = 'NO_DISPONIBLE'; 
+					$resultado_query['mensaje'] = 'No se puede eliminar la carrera debido a que tiene materias asociadas';
 
 			
 				}
 				else
 				{
-					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
-					$resultado_query['carrera'] = $query->result(); 
-					$resultado_query['status'] = 'Sin datos';
-					$resultado_query['mensaje'] = 'No hay registros'; 
+
+					$sql2 =	"delete from carreras where clave_oficial = ? ";
+					
+
+					$query2 = $this->db->query($sql2,array($clave_oficial));
+
+					if($query2)
+					{
+						$resultado_query['status'] = 'OK'; 
+						$resultado_query['mensaje'] = 'La carrera ha sido eliminada correctamente';
+					}
+					else{
+						$resultado_query['status'] = 'ERROR'; 
+						$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la pagina e intente de nuevo'; 
+					}
+
+
 				}
 
 			}

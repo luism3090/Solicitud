@@ -206,6 +206,92 @@ $(document).on('ready',function()
 
 
 
+
+          $("body").on("click",".btnEliminarMateria",function()
+          {
+
+              let id_materia = tblMaterias.rows($(this).closest("tr").index()).data().pluck(0)[0];
+
+              let materia =  $(this).closest("tr").find("td").eq(0).text();
+
+
+              $("#btnMdlAlertEliminarMaterias").prop("id_materia",id_materia);
+              $("#modalAlertaEliminarMaterias .modal-body").html(`<h5>¿Desea eliminar la carrera de <strong> ${materia} </strong> ?<h5>`);
+              $("#modalAlertaEliminarMaterias").modal("show");
+            
+            
+            
+          });
+
+
+          $("body").on("click","#btnMdlAlertEliminarMaterias",function()
+          {
+
+            let id_materia = $("#btnMdlAlertEliminarMaterias").prop("id_materia");
+
+                $.ajax(
+                 {
+                       type: "POST",
+                       dataType:"json",
+                       url: base_url+"Materias/deleteMaterias",
+                       data: {id_materia:id_materia},
+                       async: true,
+                       success: function(result)
+                         {
+
+                              if(result.status == "OK")
+                              {
+
+                                  $("#btnMdlAlertEliminarMaterias").removeProp("id_materia");
+                                  $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                  $('#modalAlertaMsjEliminarCarreras').modal('show');
+
+                                   
+                              }
+                              else
+                              {
+
+                                 if(result.status == "NO_DISPONIBLE")
+                                {
+                                    $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                    $('#modalAlertaMsjEliminarCarreras').modal('show');
+                                }
+                                else{
+                                    $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                    $('#modalAlertaMsjEliminarCarreras').modal('show');
+                                }
+
+                                    
+                                   
+                              }
+                           
+                          
+
+                         },
+                    error:function(result)
+                     {
+                       console.log(result.responseText);
+                       //$("#error").html(data.responseText); 
+                     }
+                       
+                     });
+
+          });
+
+
+
+          $('#modalAlertaMsjEliminarCarreras').on('hide.bs.modal', function (e) 
+         {
+            if( $("#btnMdlAlertEliminarMaterias").prop("id_materia") == undefined )
+            {
+              location.reload();
+            }
+               
+             
+         });
+
+
+
 });
    
 

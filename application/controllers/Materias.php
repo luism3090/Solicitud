@@ -84,6 +84,21 @@ class Materias extends CI_Controller
       }
 
 
+          public function deleteMaterias()
+          {
+      
+              $id_materia = $_REQUEST['id_materia'];
+              
+
+              $this->load->model('Materias/Model_Materias'); 
+              $resultado_query = $this->Model_Materias->deleteMaterias($id_materia);
+            
+
+              echo json_encode($resultado_query);
+     
+
+         }
+
      
 
 

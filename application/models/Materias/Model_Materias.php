@@ -233,6 +233,73 @@ class Model_Materias extends CI_Model
 
 
 
+		public function deleteMaterias($id_materia)
+		{
+
+			$sql =	"select distinct id_materia 
+					from rel_materias_carreras 
+					where id_materia = ? ";
+			
+
+			$query = $this->db->query($sql,array($id_materia));
+
+
+			$resultado_query = array(
+											'msjCantidadRegistros'=> 0,
+											'materia'=> array(),
+											 'status' => '',
+											 'mensaje' => ''
+										);
+
+
+			if($query)
+			{
+
+				if($query->num_rows()>0)
+				{
+					$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+					$resultado_query['materia'] = $query->result(); 
+					$resultado_query['status'] = 'NO_DISPONIBLE'; 
+					$resultado_query['mensaje'] = 'No se puede eliminar la materia debido a que tiene carrera(s) asociada(s)';
+
+			
+				}
+				else
+				{
+
+					$sql2 =	"delete from materias where id_materia = ? ";
+					
+
+					$query2 = $this->db->query($sql2,array($id_materia));
+
+					if($query2)
+					{
+						$resultado_query['status'] = 'OK'; 
+						$resultado_query['mensaje'] = 'La materia ha sido eliminada correctamente';
+					}
+					else{
+						$resultado_query['status'] = 'ERROR'; 
+						$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la página e intente de nuevo'; 
+					}
+
+
+				}
+
+			}
+			else{
+					$resultado_query['status'] = 'ERROR'; 
+					$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la página e intente de nuevo'; 
+			}
+			
+
+			return $resultado_query;
+
+
+
+		}
+
+
+
 
 
 

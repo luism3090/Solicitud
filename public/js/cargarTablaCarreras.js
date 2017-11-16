@@ -315,17 +315,6 @@ $(document).on('ready',function()
 
 
 
-
-
-           $("body").on("click","#btnMdlAlertModificarCarreras",function()
-          {
-
-             
-
-
-          });
-
-
           $('#modalAlertaModificarCarrera').on('hide.bs.modal', function (e) 
          {
 
@@ -345,8 +334,24 @@ $(document).on('ready',function()
           $("body").on("click",".btnEliminarCarrera",function()
           {
 
-             let clave_oficial = tblCarreras.rows($(this).closest("tr").index()).data().pluck(0)[0];
+            let clave_oficial = tblCarreras.rows($(this).closest("tr").index()).data().pluck(0)[0];
 
+           let carrera =  $(this).closest("tr").find("td").eq(2).text();
+
+
+            $("#btnMdlAlertEliminarCarreras").prop("clave_oficial",clave_oficial);
+            $("#modalAlertaEliminarCarrera .modal-body").html(`<h5>¿Desea eliminar la carrera de <strong> ${carrera} </strong> ?<h5>`);
+            $("#modalAlertaEliminarCarrera").modal("show");
+            
+            
+            
+          });
+
+
+          $("body").on("click","#btnMdlAlertEliminarCarreras",function()
+          {
+
+            let clave_oficial = $("#btnMdlAlertEliminarCarreras").prop("clave_oficial");
 
                 $.ajax(
                  {
@@ -358,16 +363,30 @@ $(document).on('ready',function()
                        success: function(result)
                          {
 
-                              if(result.status != "ERROR")
+                              if(result.status == "OK")
                               {
-                                  
-                                   $("#modalAlertaModificarCarrera").modal("show");
+
+                                  $("#btnMdlAlertEliminarCarreras").removeProp("clave_oficial");
+                                  $('#modalAlertaMsjEliminarMaterias .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                  $('#modalAlertaMsjEliminarMaterias').modal('show');
+
                                    
                               }
                               else
                               {
-                                   $('#modalAlerta .modal-body').text(result.mensaje);
-                                   $('#modalAlerta').modal('show');
+
+                                 if(result.status == "NO_DISPONIBLE")
+                                {
+                                    $('#modalAlertaMsjEliminarMaterias .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                    $('#modalAlertaMsjEliminarMaterias').modal('show');
+                                }
+                                else{
+                                  $('#modalAlertaMsjEliminarMaterias .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                    $('#modalAlertaMsjEliminarMaterias').modal('show');
+                                }
+
+                                    
+                                   
                               }
                            
                           
@@ -381,11 +400,18 @@ $(document).on('ready',function()
                        
                      });
 
-
-            
-            
           });
 
+
+      $('#modalAlertaMsjEliminarMaterias').on('hide.bs.modal', function (e) 
+         {
+            if( $("#btnMdlAlertEliminarCarreras").prop("clave_oficial") == undefined )
+            {
+              location.reload();
+            }
+               
+             
+         });
 
 
 
