@@ -73,14 +73,22 @@ $(document).ready(function()
 	          async: true,
 	          success: function(result)
 		          {
-	
-		          	$('#modalAlerta .modal-body').text(result.mensaje);
-		          	$('#modalAlerta').modal('show');
-		          	if(result.resultado == 'OK')
-		          	{
-		          		$("#btnGuardarMateria").prop("resultado",result.resultado);
-		          		
-		          	}
+					
+					if( typeof(result.redirect) == 'undefined')
+                    {
+                    	$('#modalAlerta .modal-body').text(result.mensaje);
+                    	$('#modalAlerta').modal('show');
+                    	if(result.resultado == 'OK')
+                    	{
+                    		$("#btnGuardarMateria").prop("resultado",result.resultado);
+                    		
+                    	}
+                    }
+                    else
+                    {
+                      location.href = result.url;
+                    }
+		          	
 
 		          },
 			   error:function(result)

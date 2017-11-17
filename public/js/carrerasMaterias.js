@@ -29,24 +29,33 @@ $(document).ready(function()
 	        success: function(result)
 	            {
 
-	                if(result.length > 0)
-	                {
-	                   let options ="<option selected disabled >Elija una opción</option>";
-	                   result.forEach(function(elemento,index) 
-	                   {
-	  
-	                       options += '<option value="'+elemento.clave_oficial+'">'+elemento.nombre_carrera+'</option>';
-	                      
-	                  });
+	            	if( typeof(result.redirect) == 'undefined')
+                    {
+    	                if(result.length > 0)
+    	                {
+    	                   let options ="<option selected disabled >Elija una opción</option>";
+    	                   result.forEach(function(elemento,index) 
+    	                   {
+    	  
+    	                       options += '<option value="'+elemento.clave_oficial+'">'+elemento.nombre_carrera+'</option>';
+    	                      
+    	                  });
 
-	                   $("#slCarreras").html(options);
+    	                   $("#slCarreras").html(options);
 
-	                }
-	                else
-	                {
-	                	$("#modalAlerta .modal-body").html("No se encontraron carreras disponibles porfavor agregue carreras para poder continuar");
-						$("#modalAlerta").modal("show");
-	                }
+    	                }
+    	                else
+    	                {
+    	                	$("#modalAlerta .modal-body").html("No se encontraron carreras disponibles porfavor agregue carreras para poder continuar");
+    						$("#modalAlerta").modal("show");
+    	                }
+                    }
+                    else
+                    {
+                      location.href = result.url;
+                    }
+
+	                
 	              
 	            },
 	       error:function(result)
@@ -76,19 +85,26 @@ $(document).ready(function()
 	        success: function(result)
 	            {
 
-	                if(result.length > 0)
-	                {
-	                   let options ="<option selected disabled >Elija una opción</option>";
-	                   result.forEach(function(elemento,index) 
-	                   {
-	  
-	                       options += '<option value="'+elemento.id_semestre+'">'+elemento.nombre_semestre+'</option>';
-	                      
-	                  });
+	            	if( typeof(result.redirect) == 'undefined')
+                    {
+                    	if(result.length > 0)
+                    	{
+                    	   let options ="<option selected disabled >Elija una opción</option>";
+                    	   result.forEach(function(elemento,index) 
+                    	   {
+                    	
+                    	       options += '<option value="'+elemento.id_semestre+'">'+elemento.nombre_semestre+'</option>';
+                    	      
+                    	  });
 
-	                   $("#slSemestres").html(options);
+                    	   $("#slSemestres").html(options);
 
-	                }
+                    	}
+                    }
+                    else
+                    {
+                      location.href = result.url;
+                    }
 
 	              
 	            },
@@ -180,16 +196,23 @@ $(document).ready(function()
 	          success: function(result)
 		          {
 
-		          	console.log(result);
+		          	if( typeof(result.redirect) == 'undefined')
+                    {
+                    	$('#modalAlerta .modal-body').text(result.mensaje);
+                    	$('#modalAlerta').modal('show');
+                    	if(result.status == 'OK')
+                    	{
+                    		
+                    		getInfoCarrerasMaterias();
+                    		$("#btnGuardarCarrerasMaterias").attr('disabled',false); 
+                    	}
+                    }
+                    else
+                    {
+                      location.href = result.url;
+                    }
 	
-		          	$('#modalAlerta .modal-body').text(result.mensaje);
-		          	$('#modalAlerta').modal('show');
-		          	if(result.status == 'OK')
-		          	{
-		          		
-		          		getInfoCarrerasMaterias();
-		          		$("#btnGuardarCarrerasMaterias").attr('disabled',false); 
-		          	}
+		          
 
 		          },
 			   error:function(result)
@@ -250,118 +273,129 @@ $(document).ready(function()
 		          success: function(result)
 			          {
 
-			          	if(result.status == 'OK')
-			          	{
-			          		let tempMaterias = '';
-			          		let tempModalInfoMaterias = '';
+			          	if( typeof(result.redirect) == 'undefined')
+                    	{
 
-			          		let buttonCreditosMateria = ''
-			          		let buttonHorasTeoricas = ''
-			          		let buttonHorasPracticas = ''
+				          	if(result.status == 'OK')
+				          	{
+				          		let tempMaterias = '';
+				          		let tempModalInfoMaterias = '';
 
-			          		$("body #tblCarrerasMaterias tbody").html("");
+				          		let buttonCreditosMateria = ''
+				          		let buttonHorasTeoricas = ''
+				          		let buttonHorasPracticas = ''
 
-			          		result.materias.forEach(function(materia) {
-						    		
-						    		//<td><input type='checkbox' class="form-control" style='height: 25px;' checked='checked' /></td>
+				          		$("body #tblCarrerasMaterias tbody").html("");
 
-						    	tempMaterias = `	<tr data-id_materia='${materia.id_materia}' style='height:50px;'>
-														<td class='text-center'>${materia.nombre_completo_materia}</td>
-														<td class='text-center'>
-															<div class="form-group">
-				 												<input type="text" id="txtCreditoss${materia.id_materia}" name="txtCreditoss${materia.id_materia}" class="form-control" value='${materia.creditos_materia}' placeholder="Horas teóricas" minlength="1"  maxlength="4" style='margin: 14px auto;width:90%'>
-															</div>
-														</td>
-														<td class='text-center'>
-															<div class="form-group">
-				 												<input type="text" id="txtHorasTeoricas${materia.id_materia}" name="txtCreditoss${materia.id_materia}" class="form-control" value='${materia.horas_teoricas}' placeholder="Horas teóricas" minlength="1"  maxlength="4" style='margin: 14px auto;width:90%'>
-															</div>
-														</td>
-														<td class='text-center'>
-															<div class="form-group">
-				 												<input type="text" id="txtHorasPracticas${materia.id_materia}" name="txtCreditoss${materia.id_materia}" class="form-control" value='${materia.horas_practicas}' placeholder="Horas prácticas" minlength="1"  maxlength="4"  style='margin: 14px auto;width:90%'>
-															</div>
-														</td>
-														<td><input type='button' data-save='true' id='btnEliminarMateria_${materia.id_materia}' class="btn btn-primary btnEliminarMateria"  value='Eliminar' /></td>
-													</tr>`;
+				          		result.materias.forEach(function(materia) {
+							    		
+							    		//<td><input type='checkbox' class="form-control" style='height: 25px;' checked='checked' /></td>
+
+							    	tempMaterias = `	<tr data-id_materia='${materia.id_materia}' style='height:50px;'>
+															<td class='text-center'>${materia.nombre_completo_materia}</td>
+															<td class='text-center'>
+																<div class="form-group">
+					 												<input type="text" id="txtCreditoss${materia.id_materia}" name="txtCreditoss${materia.id_materia}" class="form-control" value='${materia.creditos_materia}' placeholder="Horas teóricas" minlength="1"  maxlength="4" style='margin: 14px auto;width:90%'>
+																</div>
+															</td>
+															<td class='text-center'>
+																<div class="form-group">
+					 												<input type="text" id="txtHorasTeoricas${materia.id_materia}" name="txtCreditoss${materia.id_materia}" class="form-control" value='${materia.horas_teoricas}' placeholder="Horas teóricas" minlength="1"  maxlength="4" style='margin: 14px auto;width:90%'>
+																</div>
+															</td>
+															<td class='text-center'>
+																<div class="form-group">
+					 												<input type="text" id="txtHorasPracticas${materia.id_materia}" name="txtCreditoss${materia.id_materia}" class="form-control" value='${materia.horas_practicas}' placeholder="Horas prácticas" minlength="1"  maxlength="4"  style='margin: 14px auto;width:90%'>
+																</div>
+															</td>
+															<td><input type='button' data-save='true' id='btnEliminarMateria_${materia.id_materia}' class="btn btn-primary btnEliminarMateria"  value='Eliminar' /></td>
+														</tr>`;
 
 
-								$("body #tblCarrerasMaterias tbody").append(tempMaterias);
+									$("body #tblCarrerasMaterias tbody").append(tempMaterias);
 
-								$('#formCarrerasMaterias').bootstrapValidator('addField',`txtCreditoss${materia.id_materia}`,{
-									group: '.form-group',
-					                validators: {
-					                    notEmpty: {
-					                        message: 'Este campo es requerido'
-					                    },
-					                     regexp: {
-				                            regexp: /^[0-9]+$/,
+									$('#formCarrerasMaterias').bootstrapValidator('addField',`txtCreditoss${materia.id_materia}`,{
+										group: '.form-group',
+						                validators: {
+						                    notEmpty: {
+						                        message: 'Este campo es requerido'
+						                    },
+						                     regexp: {
+					                            regexp: /^[0-9]+$/,
 
-				                            message: 'Solo debe ingresar números',
+					                            message: 'Solo debe ingresar números',
 
-				                        },
+					                        },
 
-					                }
+						                }
+									});
+
+									$('#formCarrerasMaterias').bootstrapValidator('addField',`txtHorasTeoricas${materia.id_materia}`,{
+										group: '.form-group',
+						                validators: {
+						                    notEmpty: {
+						                        message: 'Este campo es requerido'
+						                    },
+	                	                     regexp: {
+	                                            regexp: /^[0-9]+$/,
+
+	                                            message: 'Solo debe ingresar números',
+
+	                                        },
+
+						                }
+									});
+
+									$('#formCarrerasMaterias').bootstrapValidator('addField',`txtHorasPracticas${materia.id_materia}`,{
+										group: '.form-group',
+						                validators: {
+						                    notEmpty: {
+						                        message: 'Este campo es requerido'
+						                    },
+						                     regexp: {
+					                            regexp: /^[0-9]+$/,
+
+					                            message: 'Solo debe ingresar números',
+
+					                        },
+
+						                }
+									});
+
+
 								});
 
-								$('#formCarrerasMaterias').bootstrapValidator('addField',`txtHorasTeoricas${materia.id_materia}`,{
-									group: '.form-group',
-					                validators: {
-					                    notEmpty: {
-					                        message: 'Este campo es requerido'
-					                    },
-                	                     regexp: {
-                                            regexp: /^[0-9]+$/,
 
-                                            message: 'Solo debe ingresar números',
-
-                                        },
-
-					                }
-								});
-
-								$('#formCarrerasMaterias').bootstrapValidator('addField',`txtHorasPracticas${materia.id_materia}`,{
-									group: '.form-group',
-					                validators: {
-					                    notEmpty: {
-					                        message: 'Este campo es requerido'
-					                    },
-					                     regexp: {
-				                            regexp: /^[0-9]+$/,
-
-				                            message: 'Solo debe ingresar números',
-
-				                        },
-
-					                }
-								});
+				          		
 
 
-							});
+								
+
+				          			
+				          	}
+				          	else
+				          	{
+				          		if(result.status == 'Sin datos')
+				          		{
+				          			$("#tblCarrerasMaterias tbody").html(`	<tr class='noData' >
+																				<td  colspan='5' class='text-center'>No hay información disponible</td>
+																			</tr>`
+																		);
+				          		}
+				          		else
+				          		{
+
+				          		}
+				          	}
 
 
-			          		
-
-
-							
-
-			          			
-			          	}
-			          	else
-			          	{
-			          		if(result.status == 'Sin datos')
-			          		{
-			          			$("#tblCarrerasMaterias tbody").html(`	<tr class='noData' >
-																			<td  colspan='5' class='text-center'>No hay información disponible</td>
-																		</tr>`
-																	);
-			          		}
-			          		else
-			          		{
-
-			          		}
-			          	}
-
+                    	}
+                    	else
+                    	{
+                    	  location.href = result.url;
+                    	}
+                    	
+			          	
 			          	
 
 			          },
@@ -440,43 +474,52 @@ $(document).ready(function()
 		          success: function(result)
 			          {
 			          	
+			          	if( typeof(result.redirect) == 'undefined')
+                    	{
+        		          	if(result.status == 'OK')
+        		          	{
+        		          		let tempMaterias = '';
 
-			          	if(result.status == 'OK')
-			          	{
-			          		let tempMaterias = '';
+        		          		
+        		          		result.materias.forEach(function(materia) {
+        					    	
+        					    		tempMaterias += `	<tr data-id_materia='${materia.id_materia}' >
+        													<td><input type='checkbox' class="form-control" style='height: 25px;'  /></td>
+        													<td class='text-center'>${materia.nombre_completo_materia}</td>
+        												</tr>`;
 
-			          		
-			          		result.materias.forEach(function(materia) {
-						    	
-						    		tempMaterias += `	<tr data-id_materia='${materia.id_materia}' >
-														<td><input type='checkbox' class="form-control" style='height: 25px;'  /></td>
-														<td class='text-center'>${materia.nombre_completo_materia}</td>
-													</tr>`;
+        						});
 
-							});
+        		          			$("#tblMaterias tbody").html(tempMaterias);
+        		          			$("#modalAlertaAgregarMaterias #stCarrera").text($("#slCarreras option:selected").text());
+        		          			$("#modalAlertaAgregarMaterias #stSemestre").text($("#slSemestres option:selected").text());
+        		          			
 
-			          			$("#tblMaterias tbody").html(tempMaterias);
-			          			$("#modalAlertaAgregarMaterias #stCarrera").text($("#slCarreras option:selected").text());
-			          			$("#modalAlertaAgregarMaterias #stSemestre").text($("#slSemestres option:selected").text());
-			          			
+        		          			$('#modalAlertaAgregarMaterias').modal('show');
+        		          	}
+        		          	else
+        		          	{
+        		          		if(result.status == 'Sin datos')
+        		          		{
+        		          			$("#tblMaterias tbody").html(`	<tr class='noData' >
+        																		<td  colspan='5' class='text-center'>No hay información disponible</td>
+        																	</tr>`
+        																);
+        		          			$('#modalAlertaAgregarMaterias').modal('show');
+        		          		}
+        		          		else
+        		          		{
+        		          			$('#modalAlertaAgregarMaterias .modal-body').html(result.mensaje);
+        		          		}
+        		          	}
+                    	}
+                    	else
+                    	{
+                    	  location.href = result.url;
+                    	}
+                    	
 
-			          			$('#modalAlertaAgregarMaterias').modal('show');
-			          	}
-			          	else
-			          	{
-			          		if(result.status == 'Sin datos')
-			          		{
-			          			$("#tblMaterias tbody").html(`	<tr class='noData' >
-																			<td  colspan='5' class='text-center'>No hay información disponible</td>
-																		</tr>`
-																	);
-			          			$('#modalAlertaAgregarMaterias').modal('show');
-			          		}
-			          		else
-			          		{
-			          			$('#modalAlertaAgregarMaterias .modal-body').html(result.mensaje);
-			          		}
-			          	}
+			          	
 			          	
 			          },
 				   error:function(result)
@@ -651,25 +694,34 @@ $(document).ready(function()
 				          success: function(result)
 					          {
 
-					          	if(result.status == 'OK')
-					          	{
+					          	if( typeof(result.redirect) == 'undefined')
+                    			{
+                    				if(result.status == 'OK')
+                    				{
 
-					          		$("#"+datos.rowToDelete).closest("tr").remove();
+                    					$("#"+datos.rowToDelete).closest("tr").remove();
 
-					          		$("#modalAlerta .modal-body").html(result.mensaje);
-					          		$("#modalAlerta").modal("show");
-					          		getInfoCarrerasMaterias();
-					          		 $("#btnGuardarCarrerasMaterias").attr('disabled',false); 
-					          		 $("#formCarrerasMaterias").bootstrapValidator();
-					          		//$("#formCarrerasMaterias").bootstrapValidator('resetForm', true);
+                    					$("#modalAlerta .modal-body").html(result.mensaje);
+                    					$("#modalAlerta").modal("show");
+                    					getInfoCarrerasMaterias();
+                    					 $("#btnGuardarCarrerasMaterias").attr('disabled',false); 
+                    					 $("#formCarrerasMaterias").bootstrapValidator();
+                    					//$("#formCarrerasMaterias").bootstrapValidator('resetForm', true);
 
-					    			
-					          	}
-					          	else
-					          	{
-					          		$("#modalAlerta .modal-body").html(result.mensaje);
-					          		$("#modalAlerta").modal("show");
-					          	}
+                    				
+                    				}
+                    				else
+                    				{
+                    					$("#modalAlerta .modal-body").html(result.mensaje);
+                    					$("#modalAlerta").modal("show");
+                    				}
+                    			}
+                    			else
+                    			{
+                    			  location.href = result.url;
+                    			}
+                    			
+					          	
 					          	
 					          	
 					          },

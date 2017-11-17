@@ -80,8 +80,13 @@ class HookValidarDatosUsuario
 				if($this->ci->session->userdata('logueado') === null)
 				{
 
-					redirect('Login');
-					exit();
+					if($controlador != 'RegistroPersonal')
+					{
+						redirect('Login');
+						exit();
+					}
+
+					
 
 					
 				}

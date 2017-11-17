@@ -59,23 +59,29 @@ $(document).on('ready',function()
                        async: true,
                        success: function(result)
                          {
+                            if( typeof(result.redirect) == 'undefined')
+                            {
+                                if(result.status != "ERROR")
+                                {
+                                     $("#txtNombreMateria").val(result.materia[0].nombre_completo_materia);
+                                     $("#txtNombreMateriaAbreviado").val(result.materia[0].nombre_abreviado_materia);
+                                     $("#btnMdlAlertModificarMaterias").prop('id_materia',result.materia[0].id_materia);
 
-                              if(result.status != "ERROR")
-                              {
-                                   $("#txtNombreMateria").val(result.materia[0].nombre_completo_materia);
-                                   $("#txtNombreMateriaAbreviado").val(result.materia[0].nombre_abreviado_materia);
-                                   $("#btnMdlAlertModificarMaterias").prop('id_materia',result.materia[0].id_materia);
-
-                                   $("#modalAlertaModificarMateria").modal("show");
-                                   
-
-                                   
-                              }
-                              else
-                              {
-                                   $('#modalAlerta .modal-body').text(result.mensaje);
-                                   $('#modalAlerta').modal('show');
-                              }
+                                     $("#modalAlertaModificarMateria").modal("show");
+                                     
+                                }
+                                else
+                                {
+                                     $('#modalAlerta .modal-body').text(result.mensaje);
+                                     $('#modalAlerta').modal('show');
+                                }
+                            }
+                            else
+                            {
+                              location.href = result.url;
+                            }
+                            
+                             
                            
                           
 
@@ -162,15 +168,23 @@ $(document).on('ready',function()
                        async: true,
                        success: function(result)
                          {
+                                if( typeof(result.redirect) == 'undefined')
+                                {
+                                    $('#modalAlertaModificarMateria').modal("hide");
+                                   $('#modalAlerta .modal-body').text(result.mensaje);
+                                   $('#modalAlerta').modal('show');
+                                   if(result.resultado == 'OK')
+                                   {
+                                     $("#btnMdlAlertModificarMaterias").prop("resultado",result.resultado);
+                                     
+                                   }
+                                }
+                                else
+                                {
+                                  location.href = result.url;
+                                }
+
                            
-                            $('#modalAlertaModificarMateria').modal("hide");
-                           $('#modalAlerta .modal-body').text(result.mensaje);
-                           $('#modalAlerta').modal('show');
-                           if(result.resultado == 'OK')
-                           {
-                             $("#btnMdlAlertModificarMaterias").prop("resultado",result.resultado);
-                             
-                           }
 
                          },
                     error:function(result)
@@ -239,31 +253,42 @@ $(document).on('ready',function()
                        success: function(result)
                          {
 
-                              if(result.status == "OK")
-                              {
+                            if( typeof(result.redirect) == 'undefined')
+                            {
 
-                                  $("#btnMdlAlertEliminarMaterias").removeProp("id_materia");
-                                  $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
-                                  $('#modalAlertaMsjEliminarCarreras').modal('show');
+                                   if(result.status == "OK")
+                                   {
 
-                                   
-                              }
-                              else
-                              {
+                                       $("#btnMdlAlertEliminarMaterias").removeProp("id_materia");
+                                       $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                       $('#modalAlertaMsjEliminarCarreras').modal('show');
 
-                                 if(result.status == "NO_DISPONIBLE")
-                                {
-                                    $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
-                                    $('#modalAlertaMsjEliminarCarreras').modal('show');
-                                }
-                                else{
-                                    $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
-                                    $('#modalAlertaMsjEliminarCarreras').modal('show');
-                                }
+                                        
+                                   }
+                                   else
+                                   {
 
-                                    
-                                   
-                              }
+                                      if(result.status == "NO_DISPONIBLE")
+                                     {
+                                         $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                         $('#modalAlertaMsjEliminarCarreras').modal('show');
+                                     }
+                                     else{
+                                         $('#modalAlertaMsjEliminarCarreras .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                         $('#modalAlertaMsjEliminarCarreras').modal('show');
+                                     }
+
+                                         
+                                        
+                                   }
+
+                            }
+                            else
+                            {
+                              location.href = result.url;
+                            }
+
+                              
                            
                           
 

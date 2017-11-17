@@ -59,29 +59,37 @@ $(document).on('ready',function()
                        async: true,
                        success: function(result)
                          {
+                            if( typeof(result.redirect) == 'undefined')
+                            {
 
-                              if(result.status != "ERROR")
-                              {
-                                   $("#txtClaveOficialCarrera").val(result.carrera[0].clave_oficial);
-                                   $("#txtClaveOficialCarrera").prop("clave_oficial",clave_oficial);
-                                   $("#txtCarrera").val(result.carrera[0].carrera);
-                                   $("#txtNombreCarrera").val(result.carrera[0].nombre_carrera);
-                                   $("#txtNombreCarreraReducido").val(result.carrera[0].nombre_reducido);
-                                   $("#txtCargaMaxima").val(result.carrera[0].carga_maxima);
-                                   $("#txtCargaMinima").val(result.carrera[0].carga_minima);
-                                   $("#txtCreditosTotales").val(result.carrera[0].creditos_totales);
+                                if(result.status != "ERROR")
+                                {
+                                     $("#txtClaveOficialCarrera").val(result.carrera[0].clave_oficial);
+                                     $("#txtClaveOficialCarrera").prop("clave_oficial",clave_oficial);
+                                     $("#txtCarrera").val(result.carrera[0].carrera);
+                                     $("#txtNombreCarrera").val(result.carrera[0].nombre_carrera);
+                                     $("#txtNombreCarreraReducido").val(result.carrera[0].nombre_reducido);
+                                     $("#txtCargaMaxima").val(result.carrera[0].carga_maxima);
+                                     $("#txtCargaMinima").val(result.carrera[0].carga_minima);
+                                     $("#txtCreditosTotales").val(result.carrera[0].creditos_totales);
 
-                                   $("#modalAlertaModificarCarrera").modal("show");
-                                   
+                                     $("#modalAlertaModificarCarrera").modal("show");
+                                     
 
-                                   
-                              }
-                              else
-                              {
-                                   $('#modalAlerta .modal-body').text(result.mensaje);
-                                   $('#modalAlerta').modal('show');
-                              }
-                           
+                                     
+                                }
+                                else
+                                {
+                                     $('#modalAlerta .modal-body').text(result.mensaje);
+                                     $('#modalAlerta').modal('show');
+                                }
+                              
+                            }
+                            else
+                            {
+                              location.href = result.url;
+                            }
+                              
                           
 
                          },
@@ -153,15 +161,22 @@ $(document).on('ready',function()
                                                                  success: function(result)
                                                                      {
                                                                            //console.log(result);
-                                                                         if(result.resultado == 'NO_DISPONIBLE')
-                                                                         {
-                                                                            valida = false;
-                                                                         }
-                                                                         else
-                                                                         {
-                                                                           valida = true;
-                                                                         }
-                                                                      
+                                                                        if( typeof(result.redirect) == 'undefined')
+                                                                        {
+                                                                            if(result.resultado == 'NO_DISPONIBLE')
+                                                                            {
+                                                                               valida = false;
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                              valida = true;
+                                                                            }
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                          location.href = result.url;
+                                                                        }
+
                                                                      },
                                                                 error:function(result)
                                                                    {
@@ -289,16 +304,25 @@ $(document).on('ready',function()
                        async: true,
                        success: function(result)
                          {
-                           
-                            $('#modalAlertaModificarCarrera').modal("hide");
-                           $('#modalAlerta .modal-body').text(result.mensaje);
-                           $('#modalAlerta').modal('show');
-                           if(result.resultado == 'OK')
-                           {
-                             $("#btnMdlAlertModificarCarreras").prop("resultado",result.resultado);
-                             
-                           }
 
+                           if( typeof(result.redirect) == 'undefined')
+                           {
+                                $('#modalAlertaModificarCarrera').modal("hide");
+                                $('#modalAlerta .modal-body').text(result.mensaje);
+                                $('#modalAlerta').modal('show');
+                                if(result.resultado == 'OK')
+                                {
+                                  $("#btnMdlAlertModificarCarreras").prop("resultado",result.resultado);
+                                  
+                                }
+
+                           }
+                           else
+                           {
+                            location.href = result.url;
+                           }
+                           
+                           
                          },
                     error:function(result)
                      {
@@ -363,32 +387,38 @@ $(document).on('ready',function()
                        success: function(result)
                          {
 
-                              if(result.status == "OK")
-                              {
-
-                                  $("#btnMdlAlertEliminarCarreras").removeProp("clave_oficial");
-                                  $('#modalAlertaMsjEliminarMaterias .modal-body').html("<h5>"+result.mensaje+"</h5>");
-                                  $('#modalAlertaMsjEliminarMaterias').modal('show');
-
-                                   
-                              }
-                              else
-                              {
-
-                                 if(result.status == "NO_DISPONIBLE")
+                            if( typeof(result.redirect) == 'undefined')
+                            {
+                                if(result.status == "OK")
                                 {
+
+                                    $("#btnMdlAlertEliminarCarreras").removeProp("clave_oficial");
                                     $('#modalAlertaMsjEliminarMaterias .modal-body').html("<h5>"+result.mensaje+"</h5>");
                                     $('#modalAlertaMsjEliminarMaterias').modal('show');
-                                }
-                                else{
-                                  $('#modalAlertaMsjEliminarMaterias .modal-body').html("<h5>"+result.mensaje+"</h5>");
-                                    $('#modalAlertaMsjEliminarMaterias').modal('show');
-                                }
 
-                                    
-                                   
-                              }
-                           
+                                     
+                                }
+                                else
+                                {
+
+                                   if(result.status == "NO_DISPONIBLE")
+                                  {
+                                      $('#modalAlertaMsjEliminarMaterias .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                      $('#modalAlertaMsjEliminarMaterias').modal('show');
+                                  }
+                                  else{
+                                      $('#modalAlertaMsjEliminarMaterias .modal-body').html("<h5>"+result.mensaje+"</h5>");
+                                      $('#modalAlertaMsjEliminarMaterias').modal('show');
+                                  }
+
+                                }
+                                
+                            }
+                            else
+                            {
+                              location.href = result.url;
+                            }
+                              
                           
 
                          },
