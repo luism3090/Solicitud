@@ -112,6 +112,18 @@
 								<i class="fa fa-list-alt"></i>Carreras y Materias
 							</a>
 						</li>
+						  <li>
+							<a href="#" data-toggle="collapse" data-target="#PeriodosEscolares" class="collapse active" aria-expanded="false">
+										    	 <i class="fa fa-pencil-square-o"></i>
+										    	 <span class="nav-label">Periodos Escolares</span>
+										    	 <i class="fa fa-chevron-left pull-right"></i>
+											 </a>
+
+							 <ul class="sub-menu collapse" id="PeriodosEscolares" aria-expanded="false" style="">
+						    	 <li><a href="<?php echo base_url();?>PeriodosEscolares/registrar"><i class=""></i>Registrar</a></li>
+						    	 <li><a href="<?php echo base_url();?>PeriodosEscolares/modificar"><i class=""></i>Modificar</a></li>
+							 </ul>
+						</li>
 					</ul> 
 		  </ul>
 

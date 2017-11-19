@@ -20,7 +20,7 @@
 	                    Lo sentimos, ha ocurrido un error, acceso denegado de la página solicitada!
 	                </div>
 	                <div class="error-actions">
-	                    <a href="http://localhost/Seguros/index.php/Home" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+	                    <a href="<?php echo base_url();?>Home" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
 	                        Regresar al Home </a><a href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Contactar a Soporte </a>
 	                </div>
 	            </div>

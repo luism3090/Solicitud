@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Modificar Carreras</title>
+	<title>Registrar Periodos Escolares</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloHomeMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloBarraSuperior.css">
-	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css">  -->
 
 	
 </head>
@@ -134,27 +133,30 @@
 						
 			<div class="row">
 				<div class="col-xs-12">
-					<h2 style="text-align: center;">Registrar Materias</h2>
+					<h2 style="text-align: center;">Registrar Periodos Escolares</h2>
 				</div>
 			</div>
 			<br><br><br>
 			<div class="row">
 				<div class="col-xs-12">
 						
-						 <form id="formDatosMaterias">
+						 <form id="formDatosPeriodosEscolares">
 
 						 		<div class="form-group">
-										<label for="txtNombreMateria">Nombre materia:</label>
-										<input type="text" id="txtNombreMateria" name="txtNombreMateria" class="form-control" placeholder="Nombre materia" minlength="1"  maxlength="100">
-								</div>
-								<div class="form-group">
-									<label for="txtNombreMateriaAbreviado">Nombre materia abreviado:</label>
-									<input type="text" id="txtNombreMateriaAbreviado" name="txtNombreMateriaAbreviado" class="form-control" placeholder="Nombre materia abreviado" minlength="1"  maxlength="100">
-								</div>
-								
+										<label for="txtPeriodo">Periodo:</label>
+										<input type="text" id="txtPeriodo" name="txtPeriodo" class="form-control" placeholder="Periodo"  maxlength="100">
+									</div>
+									<div class="form-group">
+										<label for="txtIdentificacion_larga">Identificación larga:</label>
+										<input type="text" id="txtIdentificacion_larga" name="txtIdentificacion_larga" class="form-control" placeholder="Identificación larga" minlength="1"  maxlength="100">
+									</div>
+									<div class="form-group">
+										<label for="txtIdentificacion_corta">Identificación corta:</label>
+										<input type="text" id="txtIdentificacion_corta" name="txtIdentificacion_corta"  class="form-control" placeholder="Identificación corta" minlength="1"  maxlength="100" >
+									</div>
 									<br><br>
 									<div class="text-center">
-										<button type="submit" class="btn btn-primary "  id="btnGuardarMateria" >Guardar</button>
+										<button type="submit" class="btn btn-primary "  id="btnGuardarPeriodosEscolares" >Guardar</button>
 									</div>
 								
 									
@@ -182,26 +184,23 @@
         
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveMaterias">Aceptar</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>
       </div>
     </div>
 
   </div>
 </div>
 
-
-
 	<br><br><br><br><br><br>
 
 	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrapValidator.js"></script>
-	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script> -->
-	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script> -->
+
 	
  	<script src="<?php echo base_url(); ?>public/js/selectElementMenu.js"></script> 
 	<script src="<?php echo base_url(); ?>public/js/cerrarSesion.js"></script> 
-	<script src="<?php echo base_url(); ?>public/js/materias.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/registrarPeriodosEscolares.js"></script>
 
 
 </body>

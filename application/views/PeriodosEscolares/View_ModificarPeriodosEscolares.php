@@ -1,12 +1,13 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Modificar Carreras</title>
+	<title>Modificar Periodos Escolares</title>
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloHomeMenu.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/estiloBarraSuperior.css">
-	<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css">  -->
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/dataTables.bootstrap.min.css"> 
+	<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>public/css/select.dataTables.min.css">
 
 	
 </head>
@@ -82,8 +83,6 @@
 							</a>
 						</li>
 						<li>
-							
-
 							 <a href="#" data-toggle="collapse" data-target="#Carreras" class="collapse active" aria-expanded="false">
 										    	 <i class="fa fa-graduation-cap"></i>
 										    	 <span class="nav-label">Carreras</span>
@@ -132,41 +131,109 @@
 
 	<div class="container" style="margin-left:18%;width:78%;" >
 						
-			<div class="row">
-				<div class="col-xs-12">
-					<h2 style="text-align: center;">Registrar Materias</h2>
-				</div>
-			</div>
-			<br><br><br>
-			<div class="row">
-				<div class="col-xs-12">
-						
-						 <form id="formDatosMaterias">
-
-						 		<div class="form-group">
-										<label for="txtNombreMateria">Nombre materia:</label>
-										<input type="text" id="txtNombreMateria" name="txtNombreMateria" class="form-control" placeholder="Nombre materia" minlength="1"  maxlength="100">
-								</div>
-								<div class="form-group">
-									<label for="txtNombreMateriaAbreviado">Nombre materia abreviado:</label>
-									<input type="text" id="txtNombreMateriaAbreviado" name="txtNombreMateriaAbreviado" class="form-control" placeholder="Nombre materia abreviado" minlength="1"  maxlength="100">
-								</div>
-								
-									<br><br>
-									<div class="text-center">
-										<button type="submit" class="btn btn-primary "  id="btnGuardarMateria" >Guardar</button>
-									</div>
-								
+								<div class="row">
+									<div class="col-xs-12 text-center">
+										
+										<h3>Modificar Periodos Escolares</h3>	
 									
-						 </form>
-						
-				</div>
-			</div>
+									</div>
+								</div>
+								<br>
+								
+								<form action="" id="formModificarCarreras">
+								
+									<fieldset>
+										<legend>Periodos Escolares:</legend>
+										<div class="row">
+											<div class="col-xs-12 ">
+												<div class="table-responsive">
+													<table class="table table-bordered table-hover" id="tblPeriodosEscolares" cellspacing="0"  width="100%" style="text-align: center;">
+															<caption style="text-align: center"><h4><strong>Periodos Escolares</strong></h4></caption>
+															<thead>
+												                    <tr>
+												                    	 <th>id periodo</th>
+													                      <th>Periodo</th>
+													                      <th>Identificación larga</th>
+													                      <th>Identificación corta</th>
+													                      <th>Modificar</th>
+													                      <th>Eliminar</th>
+												                    </tr>
+											                </thead>
+											        </table>
+												</div>
+											</div>
+										</div>
+									</fieldset>
+									<br><br>
+										
+
+								</form>
 
 	</div>
 
 
 
+
+   <!-- Modal -->
+<div id="modalAlertaModificarPeriodosEscolares" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" style='width: 800px'>
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modificar Semestres</h4>
+      </div>
+       <form id="formDatosPeriodosEscolares">
+		      <div class="modal-body">
+
+			 		<div class="form-group">
+							<label for="txtPeriodo">Periodo:</label>
+							<input type="text" id="txtPeriodo" name="txtPeriodo" class="form-control" placeholder="Periodo"  maxlength="100">
+						</div>
+						<div class="form-group">
+							<label for="txtIdentificacion_larga">Identificación larga:</label>
+							<input type="text" id="txtIdentificacion_larga" name="txtIdentificacion_larga" class="form-control" placeholder="Identificación larga" minlength="1"  maxlength="100">
+						</div>
+						<div class="form-group">
+							<label for="txtIdentificacion_corta">Identificación corta:</label>
+							<input type="text" id="txtIdentificacion_corta" name="txtIdentificacion_corta"  class="form-control" placeholder="Identificación corta" minlength="1"  maxlength="100" >
+						</div>
+
+		      </div>
+		      <div class="modal-footer">
+		      		<button type="submit" class="btn btn-primary"  id="btnMdlAlertModificarPeriodosEscolares">Modificar</button>
+		      		 <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+		      </div>
+       </form>
+    </div>
+
+  </div>
+</div>
+
+
+
+   <!-- Modal -->
+<div id="modalAlertaEliminarPeriodosEscolares" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Alerta</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertEliminarPeriodosEscolares">Aceptar</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
    <!-- Modal -->
 <div id="modalAlerta" class="modal fade" role="dialog">
@@ -182,7 +249,8 @@
         
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" data-dismiss="modal" id="btnMdlAlertSaveMaterias">Aceptar</button>
+      <button type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>
+
       </div>
     </div>
 
@@ -190,18 +258,41 @@
 </div>
 
 
+   <!-- Modal -->
+<div id="modalAlertaMsjEliminarPeriodosEscolares" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Alerta</h4>
+      </div>
+      <div class="modal-body">
+        
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>
+
+      </div>
+    </div>
+
+  </div>
+</div>
 
 	<br><br><br><br><br><br>
 
 	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrap.min.js"></script>
 	<script src="<?php echo base_url(); ?>public/libreriasJS/bootstrapValidator.js"></script>
-	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script> -->
-	<!-- <script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script> -->
+
+	<script src="<?php echo base_url(); ?>public/libreriasJS/jquery.dataTables.min.js"></script>
+	<script src="<?php echo base_url(); ?>public/libreriasJS/dataTables.bootstrap.min.js"></script>
 	
  	<script src="<?php echo base_url(); ?>public/js/selectElementMenu.js"></script> 
 	<script src="<?php echo base_url(); ?>public/js/cerrarSesion.js"></script> 
-	<script src="<?php echo base_url(); ?>public/js/materias.js"></script>
+	<script src="<?php echo base_url(); ?>public/js/modificarPeriodosEscolares.js"></script>
+
 
 
 </body>
