@@ -14,7 +14,7 @@ DOCTYPE html>
 
 <body data-base-url="<?php echo base_url();?>">
 	
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation" style='margin-top: -20px;'>
 
 	    <div class="container-fluid"> 
 
@@ -189,7 +189,7 @@ DOCTYPE html>
 
 			 		<div class="form-group">
 							<label for="txtPeriodo">Periodo:</label>
-							<input type="text" id="txtPeriodo" name="txtPeriodo" class="form-control" placeholder="Periodo"  maxlength="100">
+							<input type="text" id="txtPeriodo" name="txtPeriodo" class="form-control" placeholder="Periodo"  minlength="1"  maxlength="100">
 						</div>
 						<div class="form-group">
 							<label for="txtIdentificacion_larga">Identificación larga:</label>

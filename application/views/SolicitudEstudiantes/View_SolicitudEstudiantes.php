@@ -41,15 +41,24 @@
                                                             </div>
 
                                                             <div class="form-group form-right">
-                                                                 <label for="txtLugar" >Fecha:</label>
+                                                                 <label for="txtFecha" >Fecha:</label>
                                                                  <input type="date" id="txtFecha" name="txtFecha"  class="form-control" style='width:180px;'>
                                                             </div>
                                                        
                                                        </div>
                                                        <br>
+                                                        <div style='border:0px solid red;width: 80%;margin-left: 220px;'>
+                                                            <div class="form-group form-right">
+                                                                  <label for="slPeriodoEscolar" >Periodo escolar:</label>
+                                                                  <select id="slPeriodoEscolar" class="form-control" name="slPeriodoEscolar" style='width:385px;margin-left:10px;'>
+                                                                    <option value="" selected disabled>Elija el periodo escolar</option>
+                                                                </select> 
+                                                            </div>
+                                                       </div> 
+                                                       <br>
                                                        <div style='border:0px solid red;width: 80%;margin-left: 220px;'>
                                                              <div class="form-group form-right">
-                                                                 <label for="txtFecha">Asunto:</label>
+                                                                 <label for="txtAsunto">Asunto:</label>
                                                                  <textarea style='width:448px;height: 58px;' id="txtAsunto" name="txtAsunto" class="form-control" placeholder="Asunto" ></textarea>
                                                             </div>
                                                        </div>
@@ -63,6 +72,25 @@
                                                        </div>
 
                                                        <br><br>
+                                                 
+
+                                                       <div class="form-group" style="font-size: 18px">
+                                                               <label>¿Es la primera vez que vas hacer la solicitud?</label><br>
+                                                               <div class="col-sm-5" style="margin-top:5px;">
+                                                                   <div class="radio">
+                                                                       <label>
+                                                                           <input type="radio" id='rdSolicitudSI' name="rdSolicitud" value="SI" style="width:20px;"/> <label for='rdSolicitudSI'><strong>SI</strong></label>
+                                                                       </label>
+                                                                   </div>
+                                                                   <div class="radio">
+                                                                       <label>
+                                                                           <input type="radio" id='rdSolicitudNO' name="rdSolicitud" value="NO" style="width:20px;margin-left: 10px"/> <label for='rdSolicitudNO'><strong>NO</strong></label>
+                                                                       </label>
+                                                                   </div>
+                                                               </div>
+                                                           </div>
+
+                                                       <br><br><br><br>
                                                        
                                                        <div style='width: 780px;'>
                                                          
@@ -89,19 +117,7 @@
                                                                  <label>Estudiante del </label> 
                                                             </div>
                                                             <div class="form-group">
-                                                                  <select id="slSemestre" class="form-control" name="slSemestre" style='width:172px;margin-left: 50px;'>
-                                                                    <option value="1" selected >1º semestre</option>
-                                                                    <option value="2">2º semestre</option> 
-                                                                    <option value="3">3º semestre</option>
-                                                                    <option value="4">4º semestre</option>
-                                                                    <option value="5">5º semestre</option>
-                                                                    <option value="6">6º semestre</option>
-                                                                    <option value="7">7º semestre</option>
-                                                                    <option value="8">8º semestre</option>
-                                                                    <option value="9">9º semestre</option>
-                                                                    <option value="10">10º semestre</option>
-                                                                    <option value="11">11º semestre</option>
-                                                                    <option value="12">12º semestre</option>
+                                                                  <select id="slSemestres" class="form-control" name="slSemestres" style='width:185px;margin-left: 50px;'>
                                                                 </select> 
                                                             </div>
                                                             <div class="form-group" style='margin-left: 42px;'>
@@ -109,14 +125,7 @@
                                                             </div>
 
                                                             <div class="form-group" style='margin-left: 50px;'>
-                                                                   <select id="slCarrera" class="form-control" name="slCarrera" style='width:245px;'>
-                                                                     <option value="1" selected >Ingenieria en sistemas</option>
-                                                                     <option value="2">Ingenieria en electrónica</option> 
-                                                                     <option value="3">Ingenieria industrial</option>
-                                                                     <option value="4">Ingenieria en alimentos</option>
-                                                                     <option value="5">Ingenieria civil</option>
-                                                                     <option value="6">Ingeieria mecanica</option>
-                                                                     <option value="7">Ingeieria química</option>
+                                                                   <select id="slCarreras" class="form-control" name="slCarreras" style='width:230px;'>
                                                                  </select> 
                                                             </div>
 
@@ -140,11 +149,21 @@
 
                                                        <div style='width: 780px;'>
                                                             <div class="form-group" >
-                                                                 <textarea style='width:776px;height:70px' id="txtMateriaACursar" name="txtMateriaACursar" placeholder="Materia a cursar" class="form-control"></textarea>
+                                                                 <textarea style='width:776px;height:70px' id="txtObservacion" name="txtObservacion" placeholder="Observación" class="form-control"></textarea>
                                                             </div>
-                                                       </div>     
+                                                       </div>
+                                                       <br>
 
-                                                       <br><br><br>
+
+                                                        <div style='width: 780px;'>
+                                                            <div class="form-group">
+                                                                <label for='txtCurpEstudiante'>Curp: </label>
+                                                                <input type="text" id="txtCurpEstudiante" name="txtCurpEstudiante"  class="form-control" placeholder="Curp del estudiante" style='width:735px'>
+
+                                                            </div>     
+                                                         </div>    
+
+                                                       <br><br><br><br>
 
                                                        <div style='width: 780px;'>
                                                             <div class="form-group" >
@@ -175,7 +194,7 @@
 
                                                        <div style='width: 780px;'>
                                                              <div class="form-group" >
-                                                                  <textarea style='width:776px;height:70px' id="txtMotivosAcademicos" name="txtMotivosAcademicos" placeholder="Motivos académicos" class="form-control"></textarea>
+                                                                  <textarea style='width:776px;height:70px' id="txtMotivosPersonales" name="txtMotivosPersonales" placeholder="Motivos personales" class="form-control"></textarea>
                                                             </div>
                                                        </div>  
 
@@ -198,7 +217,7 @@
                                 <div class="row">
                                       <div class="col-xs-12 ">
                                           <br><br>
-                                          <button type="submit" class="btn btn-primary center-block text-center"  >Guardar</button>
+                                          <button type="submit" class="btn btn-primary center-block text-center" id="btnAceptarSolicitudEstudiante" >Aceptar</button>
                                       </div>
                                 </div>
                               
@@ -229,6 +248,82 @@
               </div>
         </div>
     </div>
+
+
+       <!-- Modal -->
+    <div id="modalAlertaMsJSolicitudEstudiante" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+           
+              <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Alerta</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                    </div>
+              </div>
+        </div>
+    </div>
+
+
+
+        <!-- Modal -->
+    <div id="modalAlertaIngresaNocontrol" class="modal fade" role="dialog"  data-backdrop="static" data-keyboard="false"  >
+        <div class="modal-dialog">
+           
+              <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Alerta</h4>
+                    </div>
+               <form id="formNumeroControlAlumno">
+                    <div class="modal-body">
+
+                         <div class="form-group">
+                              <label for="mdlTxtNumControl">Ingrese su número de control:</label>
+                              <input type="text" id="mdlTxtNumControl" name="mdlTxtNumControl" style="width: 100%;" class="form-control" placeholder="Número de control" minlength="1"  maxlength="100">  
+                         </div>    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id='btnNumControlGetDatosEstudiante'>Aceptar</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" >Cancelar</button>
+                    </div>
+               </form>
+              </div>
+         
+        </div>
+    </div>
+
+
+
+            <!-- Modal -->
+    <div id="modalConfirDatosCorrectosSolicitud" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false" >
+        <div class="modal-dialog">
+           
+              <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Alerta</h4>
+                    </div>
+              
+                    <div class="modal-body">
+                    
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" id='btnEnviarSolicitudEstudiante'>
+                         <span class="glyphicon glyphicon-arrow-right"></span> Enviar Solicitud
+                         </button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" >Regresar</button>
+                    </div>
+              
+              </div>
+         
+        </div>
+    </div>
+
 
 
     <script src="<?php echo base_url(); ?>public/libreriasJS/jquery.min.js"></script>

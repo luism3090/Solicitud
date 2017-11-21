@@ -100,6 +100,7 @@ $(document).ready(function()
                     	   $("#slSemestres").html(options);
 
                     	}
+                    	
                     }
                     else
                     {

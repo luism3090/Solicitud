@@ -14,7 +14,7 @@ DOCTYPE html>
 
 <body data-base-url="<?php echo base_url();?>">
 	
-	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="navbar navbar-default navbar-fixed-top" role="navigation" style='margin-top: -20px;'>
 
 	    <div class="container-fluid"> 
 

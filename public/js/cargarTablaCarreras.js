@@ -293,7 +293,7 @@ $(document).on('ready',function()
                    creditosTotales:$("#txtCreditosTotales").val()
                  }
 
-                 console.log(datosCarrera);
+                 // console.log(datosCarrera);
 
                  $.ajax(
                  {

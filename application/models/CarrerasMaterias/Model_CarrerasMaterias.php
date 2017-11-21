@@ -301,7 +301,7 @@ class Model_CarrerasMaterias extends CI_Model
 		public function guardarCarrerasMaterias($datosMaterias,$clave_oficial,$id_semestre)
 		{
 
-			//$this->db->trans_begin();
+			$this->db->trans_begin();
 
 			$sql1 = "delete from rel_materias_carreras 
 					where 	clave_oficial = ? and
@@ -366,34 +366,7 @@ class Model_CarrerasMaterias extends CI_Model
 				    $this->db->trans_commit();
 				}
 
-			
-
-
-			// if($query)
-			// {
-
-			// 	if($query->num_rows()>0)
-			// 	{
-			// 		$resultado_query['msjCantidadRegistros'] = $query->num_rows();
-			// 		$resultado_query['materias'] = $query->result(); 
-			// 		$resultado_query['status'] = 'OK'; 
-			// 		$resultado_query['mensaje'] = 'información obtenida';
-
-			
-			// 	}
-			// 	else
-			// 	{
-			// 		$resultado_query['msjCantidadRegistros'] = $query->num_rows();
-			// 		$resultado_query['materias'] = $query->result(); 
-			// 		$resultado_query['status'] = 'Sin datos';
-			// 		$resultado_query['mensaje'] = 'No hay registros'; 
-			// 	}
-
-			// }
-			// else{
-			// 		$resultado_query['status'] = 'ERROR'; 
-			// 		$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la pagina e intente de nuevo'; 
-			// }
+		
 			
 			
 			return $resultado_query;
