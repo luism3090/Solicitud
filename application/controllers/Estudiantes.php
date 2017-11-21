@@ -59,6 +59,31 @@ class Estudiantes extends CI_Controller
 	}
 
 
+	 public function cargarSelectCarreras()
+	{
+
+
+		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
+		$datosSelect = $this->Model_CarrerasMaterias->cargarSelectCarreras();
+
+		echo json_encode($datosSelect);
+
+	}
+
+	 public function cargarSelectSemestres()
+	{
+		
+		$this->load->model('CarrerasMaterias/Model_CarrerasMaterias'); 
+		$datosSelect = $this->Model_CarrerasMaterias->cargarSelectSemestres();
+
+
+
+		echo json_encode($datosSelect);
+
+	}
+
+
+
 
 }
 

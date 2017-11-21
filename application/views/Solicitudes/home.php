@@ -152,13 +152,11 @@
 								                      <th>Apellido materno</th>
 								                      <th>Curp</th>
 								                      <th>Semestre</th>
-								                      <th>Créditos aprobados</th>
-								                      <th>Créditos cursados</th>
 								                      <th>Solicitud</th>
 							                    </tr>
 							            </thead>
 					                    <tbody>
-					                    	<tr>
+					                    	<!-- <tr>
 					                    		<td>Datos</td>
 					                    		<td>Datos</td>
 					                    		<td>Datos</td>
@@ -168,51 +166,7 @@
 					                    		<td>Datos</td>
 					                    		<td>Datos</td>
 					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
-					                    	<tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr>
+					                    	</tr> -->
 					                    </tbody>
 						                
 						        </table>
@@ -319,6 +273,7 @@
 <!-- 	<script src="<?php echo base_url(); ?>public/js/cargarMenu.js"></script> 
 	<script src="<?php echo base_url(); ?>public/js/cargarTablaPolizas.js"></script>-->
 	<script src="<?php echo base_url(); ?>public/js/cerrarSesion.js"></script> 
+	<script src="<?php echo base_url(); ?>public/js/solicitudes.js"></script> 
 
 
 </body>

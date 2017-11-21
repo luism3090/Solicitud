@@ -64,12 +64,16 @@ class HookValidarDatosUsuario
 				if($this->ci->session->userdata('logueado') === null)
 				{
 
-					$datos["redirect"]=true;
-					$datos["url"]= base_url()."Login";
+					if($controlador != 'RegistroPersonal' and $controlador != 'Estudiantes')
+					{
+						$datos["redirect"]=true;
+						$datos["url"]= base_url()."Login";
 
-					echo json_encode($datos);
+						echo json_encode($datos);
+						
+						exit();
+					}
 					
-					exit();
 
 				}
 
@@ -80,11 +84,20 @@ class HookValidarDatosUsuario
 				if($this->ci->session->userdata('logueado') === null)
 				{
 
+					
+					
+
 					if($controlador != 'RegistroPersonal' and $controlador != 'Estudiantes')
 					{
+						
+
 						redirect('Login');
 						exit();
 					}
+					// else{
+					// 	echo json_encode($controlador."B");
+					// 	exit();
+					// }
 
 					
 

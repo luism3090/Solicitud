@@ -395,7 +395,7 @@ $(document).on("ready",function()
 	    {
 	      
 	      type: "POST",
-	      url: base_url+"CarrerasMaterias/cargarSelectCarreras",
+	      url: base_url+"Estudiantes/cargarSelectCarreras",
 	      dataType:"json",
 	      data: '',
 	      async: true,
@@ -446,7 +446,7 @@ $(document).on("ready",function()
 	    {
 	      
 	      type: "POST",
-	      url: base_url+"CarrerasMaterias/cargarSelectSemestres",
+	      url: base_url+"Estudiantes/cargarSelectSemestres",
 	      dataType:"json",
 	      data: '',
 	      async: true,
