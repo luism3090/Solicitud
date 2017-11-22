@@ -43,6 +43,18 @@ class Home extends CI_Controller
 
 
 
+	 public function getCountSolicitudesEstudiante()
+    {
+     
+     	$no_de_control = $_REQUEST["no_de_control"];
+
+            $this->load->model('Solicitudes/Model_Solicitudes');
+             $datos = $this->Model_Solicitudes->getCountSolicitudesEstudiante($no_de_control);
+
+            echo json_encode($datos);
+
+    }
+
 
 }
 

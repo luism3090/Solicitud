@@ -156,19 +156,7 @@
 							                    </tr>
 							            </thead>
 					                    <tbody>
-					                    	<!-- <tr>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td>Datos</td>
-					                    		<td><button  type="button" class="btn btn-success showSolicitud"> <span class="glyphicon glyphicon-envelope"></span> Solicitud </button></td>
-					                    	</tr> -->
 					                    </tbody>
-						                
 						        </table>
 						</div>
 				</div>
@@ -179,63 +167,46 @@
 
        <!-- Modal -->
 
-<div id="modalUpdateUsuarioCabecera" class="modal fade" role="dialog" data-keyboard="false" data-backdrop="static" >
+<div id="modalSolicitudesEstudiante" class="modal fade" role="dialog"  >
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content" style='width: 950px;margin-left: -75px;'>
 	      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title">Modificar usuario</h4>
+		        <h4 class="modal-title">Alerta</h4>
 	      </div>
-	      <form id="FormUpdateUsuarioCabecera">
 		      <div class="modal-body">
-			      	<div class="row">
-			        	<div class="col-xs-12">
-				        		
-									<div class="form-group">
-										<label for="txtNombreCab">Nombre:</label>
-										<input type="text" id="txtNombreCab" name="txtNombreCab" class="form-control" placeholder="Nombre">
-									</div>
-									<div class="form-group">
-										<label for="txtApellidosCab">Apellidos:</label>
-										<input type="text" id="txtApellidosCab" name="txtApellidosCab" class="form-control" placeholder="Apellidos">
-									</div>
-									<div class="form-group">
-										<label for="txtEmailCab">Email:</label>
-										<input type="text" id="txtEmailCab" name="txtEmailCab"  class="form-control" placeholder="Email">
-									</div>
-									<div class="form-group">
-										<label for="txtPasswordCab">Password:</label>
-										<input type="text" id="txtPasswordCab" name="txtPasswordCab"  class="form-control" placeholder="Password" minlength="5"  maxlength="20" >
-									</div>
-									<div class="form-group">
-										<label for="slTipoUsuarioCab">Tipo de usuario:</label> 
-										<select id="slTipoUsuarioCab" class="form-control" name="slTipoUsuarioCab">
-											<option value="1">Super Usuario</option>
-											<option value="2">Administrador</option> 
-											<option value="3" selected>Cliente</option>
-										</select> 
-									</div>
+			    
+				        		<h4 style="text-align: center"><h4>Solicitudes del estudiante <strong id='nameEstudiante'></strong></h4></label>
+								<br><br>
 
-									<div class="form-group">
-											 <label for="fileFotoCab" class="center-block text-center" >Foto:</label> 
-												<div class="kv-avatar center-block text-center" style="width:200px">
-									                <input id="fileFotoCab" name="avatar-2" type="file" class="file-loading" >
-									            </div>
-									  </div>
-											<br><br>
-									<input type="hidden" id="txtIdUsuarioCab" class="form-control">
+									<table class="table table-bordered table-hover" id="tblSolicitudesEstudiante" cellspacing="0"  width="100%" style="text-align: center;">
+										
+
+										<thead>
+							                    <tr>
+							                    	 <th>No de solicitud</th>
+								                      <th>Asunto</th>
+								                      <th>Lugar</th>
+								                      <th>Fecha</th>
+								                      <th>Semestre</th>
+								                      <th>Periodo</th>
+								                      <th>Solicitud</th>
+							                    </tr>
+							            </thead>
+					                    <tbody>
+					                    </tbody>
+						        </table>
 									
 								
-			        	</div>
-			        </div>
+			        
 		      </div>
 		      <div class="modal-footer">
-				      <button type="submit" class="btn btn-primary"  id="btnModificarUsuarioCab" >Modificar</button>
-				      <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				      <button type="submit" class="btn btn-primary"  id="btnSolicitudesEstudiante" data-dismiss="modal" >Aceptar</button>
+				      
 		      </div>
-	      </form>
+	    
     </div>
 
   </div>
