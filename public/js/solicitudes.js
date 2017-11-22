@@ -82,7 +82,7 @@ $(document).ready(function()
 												<td class='text-center'>${solicitud.fecha}</td>
 												<td class='text-center'>${solicitud.nombre_semestre}</td>
 												<td class='text-center'>${solicitud.identificacion_larga}</td>
-												<td><p class='demo'><a href='${base_url}SolicitudEstudiantePDF.php' target='_blank' class='demo'>
+												<td><p class='demo'><a href='${base_url}/Home/solicitudPDFEstudiante?num_solicitud=${solicitud.num_solicitud}' target='_blank' class='demo'>
 																	<input type='button' class="btn btn-primary btnVerFormatoSolicitud"  value='Ver solicitud' />
 																</a>
 													</p> 

@@ -1,10 +1,10 @@
 <?php 
 class Model_Solicitudes extends CI_Model
 {
-		public function __construct()
-		{
-			parent::__construct();
-		}
+	public function __construct()
+	{
+		parent::__construct();
+	}
 
 
 	public function cargarTablaSolicitudes($request)
@@ -30,32 +30,6 @@ class Model_Solicitudes extends CI_Model
 									  join semestres se on(alu.id_semestre = se.id_semestre) 
 										order by ".$columna." ".$ordenacion." ";
 
-
-				// $sqlSolicitudes =	"select
-				// 								no_de_control,
-				// 								nombre_alumno,
-				// 								apellido_paterno,
-				// 						        apellido_materno,
-				// 						        nombreCompleto,
-				// 						        curp_alumno,
-				// 						        nombre_semestre,
-				// 						        Solicitudes
-				// 						From(
-				// 						select distinct 
-				// 								alu.no_de_control,
-				// 								alu.nombre_alumno,
-				// 								alu.apellido_paterno,
-				// 						        alu.apellido_materno,
-				// 						        CONCAT(alu.nombre_alumno , ' ', alu.apellido_paterno,' ',alu.apellido_materno) as nombreCompleto,
-				// 						        alu.curp_alumno,
-				// 						        se.nombre_semestre,
-				// 						         '<button  type=''button'' class=''btn btn-primary btn btnVerSolicitudes''> <span class=''glyphicon glyphicon-pencil''></span> </button>' as Solicitudes
-				// 						from alumnos alu
-				// 						join solicitudes soli on(alu.no_de_control=soli.no_de_control)
-				// 						join carreras car on(alu.clave_oficial=car.clave_oficial)
-				// 						join semestres se on(alu.id_semestre = se.id_semestre)
-				// 						) as Mytable 
-				// 						order by ".$columna." ".$ordenacion." ";
 
 				
 
@@ -152,7 +126,65 @@ class Model_Solicitudes extends CI_Model
 	}
 
 
-		public function getCountSolicitudesEstudiante($no_de_control)
+	public function getCountSolicitudesEstudiante($no_de_control)
+	{
+
+		$sql = "select 
+						soli.num_solicitud,
+						soli.asunto,lugar,
+						soli.fecha,
+						se.nombre_semestre,
+						peri.identificacion_larga
+				from solicitudes soli
+				join alumnos alu on(soli.no_de_control = alu.no_de_control)
+				join semestres se on(soli.id_semestre = se.id_semestre)
+				join periodos_escolares peri on (soli.id_periodo_escolar = peri.id_periodo_escolar)
+				where alu.no_de_control = ? ";
+
+		$query = $this->db->query($sql,array($no_de_control));		
+
+
+		$resultado_query = array(
+										'msjCantidadRegistros'=> 0,
+										'solicitudes'=> array(),
+										 'status' => '',
+										 'mensaje' => ''
+									);
+
+
+		if($query)
+		{
+
+			if($query->num_rows()>0)
+			{
+				$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+				$resultado_query['solicitudes'] = $query->result(); 
+				$resultado_query['status'] = 'OK'; 
+				$resultado_query['mensaje'] = 'información obtenida';
+
+		
+			}
+			else
+			{
+				$resultado_query['msjCantidadRegistros'] = $query->num_rows();
+				$resultado_query['solicitudes'] = $query->result(); 
+				$resultado_query['status'] = 'Sin datos';
+				$resultado_query['mensaje'] = 'No hay registros'; 
+			}
+
+		}
+		else{
+				$resultado_query['status'] = 'ERROR'; 
+				$resultado_query['mensaje'] = 'Ocurrió un error en la base de datos porfavor recargue la pagina e intente de nuevo'; 
+		}
+		
+		
+		return $resultado_query;
+
+	}
+
+
+	public function getDatosSolicitudPDF_Estudiante($num_solicitud)
 		{
 
 			$sql = "select 
@@ -208,5 +240,15 @@ class Model_Solicitudes extends CI_Model
 			return $resultado_query;
 
 		}
+
+
+
+
+
+
+
+
+
+	
 
 }
