@@ -19,11 +19,11 @@ class Home extends CI_Controller
 	}
 
 
-	 public function cargarTablaSolicitudes()
+	public function cargarTablaSolicitudes()
     {
      
 
-            $this->load->model('Solicitudes/Model_Solicitudes');
+             $this->load->model('Solicitudes/Model_Solicitudes');
              $datos = $this->Model_Solicitudes->cargarTablaSolicitudes($_REQUEST);
 
             echo json_encode($datos);
@@ -56,6 +56,31 @@ class Home extends CI_Controller
     }
 
 
+      public function solicitudPDFEstudiante2()
+    {
+    	$num_solicitud = $_REQUEST["num_solicitud"];
+
+    	$this->load->model('Solicitudes/Model_Solicitudes');
+
+         $datos = $this->Model_Solicitudes->getDatosSolicitudPDF_Estudiante($num_solicitud);
+	
+
+		 $arrayDatos["lugarYfecha"] = $datos["solicitudes"][0]->lugarYfecha;
+         $arrayDatos["asunto"] = $datos["solicitudes"][0]->asunto;
+         $arrayDatos["nombreCompleto"] = $datos["solicitudes"][0]->nombreCompleto;
+         $arrayDatos["nombre_semestre"] = $datos["solicitudes"][0]->nombre_semestre;
+         $arrayDatos["nombre_carrera"] = $datos["solicitudes"][0]->nombre_carrera;
+         $arrayDatos["no_de_control"] = $datos["solicitudes"][0]->no_de_control;
+         $arrayDatos["observacion"] = $datos["solicitudes"][0]->observacion;
+         $arrayDatos["motivos_academicos"] = $datos["solicitudes"][0]->motivos_academicos;
+         $arrayDatos["motivos_personales"] = $datos["solicitudes"][0]->motivos_personales;
+         $arrayDatos["otros"] = $datos["solicitudes"][0]->otros;
+         $this->load->view('Solicitudes/viewSolicitudPDF_Estudiante',$arrayDatos);
+
+
+    }
+
+
      public function solicitudPDFEstudiante()
     {
      
@@ -63,43 +88,42 @@ class Home extends CI_Controller
 
 
      	 $this->load->model('Solicitudes/Model_Solicitudes');
+
          $datos = $this->Model_Solicitudes->getDatosSolicitudPDF_Estudiante($num_solicitud);
+
+         $nombreCompleto = $datos["solicitudes"][0]->nombreCompleto;
+
+         $arrayDatos["lugarYfecha"] = $datos["solicitudes"][0]->lugarYfecha;
+         $arrayDatos["asunto"] = $datos["solicitudes"][0]->asunto;
+         $arrayDatos["nombreCompleto"] = $datos["solicitudes"][0]->nombreCompleto;
+         $arrayDatos["nombre_semestre"] = $datos["solicitudes"][0]->nombre_semestre;
+         $arrayDatos["nombre_carrera"] = $datos["solicitudes"][0]->nombre_carrera;
+         $arrayDatos["no_de_control"] = $datos["solicitudes"][0]->no_de_control;
+         $arrayDatos["observacion"] = $datos["solicitudes"][0]->observacion;
+         $arrayDatos["motivos_academicos"] = $datos["solicitudes"][0]->motivos_academicos;
+         $arrayDatos["motivos_personales"] = $datos["solicitudes"][0]->motivos_personales;
+         $arrayDatos["otros"] = $datos["solicitudes"][0]->otros;
+
+
+     	 $html =  $this->load->view('Solicitudes/viewSolicitudPDF_Estudiante',$arrayDatos,true);
 
         $data = [];
 
 		$hoy = date("dmyhis");
 
-        //load the view and saved it into $html variable
-   //      $html = 
-   //      "<style>@page {
-			//     margin-top: 0.5cm;
-			//     margin-bottom: 0.5cm;
-			//     margin-left: 0.5cm;
-			//     margin-right: 0.5cm;
-			// }
-			// </style>".
-   //      "<body>
-   //      	<div style='color:#006699;'><b>".$this->input->post('txtPDF')."<b></div>".
-   //      		"<div style='width:50px; height:50px; background-color:red;'>asdf</div>
 
-   //      </body>";
-
-        // $html = $this->load->view('v_dpdf',$date,true);
- 		
- 		//$html="asdf";
-        //this the the PDF filename that user will get to download
-        $pdfFilePath = "cipdf_".$hoy.".pdf";
+        $pdfFilePath = $nombreCompleto."_".$hoy.".pdf";
  
         //load mPDF library
         $this->load->library('M_pdf');
         $mpdf = new mPDF('c', 'A4-L'); 
- 		$mpdf->WriteHTML($num_solicitud);
+ 		//$mpdf->WriteHTML($num_solicitud);
 		$mpdf->Output($pdfFilePath, "D");
-       // //generate the PDF from the given html
-       //  $this->m_pdf->pdf->WriteHTML($html);
+       //generate the PDF from the given html
+        $this->m_pdf->pdf->WriteHTML($html);
  
-       //  //download it.
-       //  $this->m_pdf->pdf->Output($pdfFilePath, "D"); 
+        //download it.
+        $this->m_pdf->pdf->Output($pdfFilePath, "D"); 
 
     }
 

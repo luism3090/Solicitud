@@ -182,8 +182,6 @@
 								<br><br>
 
 									<table class="table table-bordered table-hover" id="tblSolicitudesEstudiante" cellspacing="0"  width="100%" style="text-align: center;">
-										
-
 										<thead>
 							                    <tr>
 							                    	 <th>No de solicitud</th>
@@ -198,9 +196,7 @@
 					                    <tbody>
 					                    </tbody>
 						        </table>
-									
 								
-			        
 		      </div>
 		      <div class="modal-footer">
 				      <button type="submit" class="btn btn-primary"  id="btnSolicitudesEstudiante" data-dismiss="modal" >Aceptar</button>

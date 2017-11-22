@@ -185,17 +185,7 @@ $(document).on("ready",function()
 	                }
 	            },
 
-	            txtMotivosAcademicos: {
-	                group: '.form-group',
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Este campo es requerido'
-	                    }
-
-	                }
-	            },
-
-	            // txtMotivosPersonales: {
+	            // txtMotivosAcademicos: {
 	            //     group: '.form-group',
 	            //     validators: {
 	            //         notEmpty: {
@@ -204,6 +194,16 @@ $(document).on("ready",function()
 
 	            //     }
 	            // },
+
+	            txtMotivosPersonales: {
+	                group: '.form-group',
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Este campo es requerido'
+	                    }
+
+	                }
+	            },
 
 	            //  txtOtros: {
 	            //     group: '.form-group',

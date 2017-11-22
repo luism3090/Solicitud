@@ -40,9 +40,6 @@ $(document).ready(function()
        
        });
 
-
-
-
    $("body").on("click",".btnVerSolicitudes",function(){
 
    		let no_de_control = tblSolicitudes.rows($(this).closest("tr").index()).data().pluck(0)[0];
