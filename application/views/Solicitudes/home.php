@@ -184,13 +184,14 @@
 									<table class="table table-bordered table-hover" id="tblSolicitudesEstudiante" cellspacing="0"  width="100%" style="text-align: center;">
 										<thead>
 							                    <tr>
-							                    	 <th>No de solicitud</th>
+							                    	 <th>No</th>
 								                      <th>Asunto</th>
 								                      <th>Lugar</th>
 								                      <th>Fecha</th>
 								                      <th>Semestre</th>
 								                      <th>Periodo</th>
 								                      <th>Solicitud</th>
+								                      <th>Estatus</th>
 							                    </tr>
 							            </thead>
 					                    <tbody>

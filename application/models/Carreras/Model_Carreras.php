@@ -340,32 +340,6 @@
 			}
 
 
-			// if($query)
-			// {
-
-			// 	if($query->num_rows()>0)
-			// 	{
-			// 		$resultado_query = array(
-			// 								'resultado'=>'NO_DISPONIBLE',
-			// 								'mensaje'=>'La clave oficial no esta disponible'
-			// 							);
-			
-			// 	}
-			// 	else
-			// 	{
-			// 		$resultado_query = array(
-			// 								'resultado'=>'OK',
-			// 								'mensaje'=>'se puede ocupar la clave'
-			// 							);
-			// 	}
-
-			// }
-			// else{
-			// 	$resultado_query = array(
-			// 								'resultado'=>'ERROR',
-			// 								'mensaje'=>'Ocurrio un error a la hora de guardar los datos'
-			// 							);
-			// }
 			
 
 			return $resultado_query;

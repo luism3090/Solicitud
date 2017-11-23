@@ -56,31 +56,6 @@ class Home extends CI_Controller
     }
 
 
-      public function solicitudPDFEstudiante2()
-    {
-    	$num_solicitud = $_REQUEST["num_solicitud"];
-
-    	$this->load->model('Solicitudes/Model_Solicitudes');
-
-         $datos = $this->Model_Solicitudes->getDatosSolicitudPDF_Estudiante($num_solicitud);
-	
-
-		 $arrayDatos["lugarYfecha"] = $datos["solicitudes"][0]->lugarYfecha;
-         $arrayDatos["asunto"] = $datos["solicitudes"][0]->asunto;
-         $arrayDatos["nombreCompleto"] = $datos["solicitudes"][0]->nombreCompleto;
-         $arrayDatos["nombre_semestre"] = $datos["solicitudes"][0]->nombre_semestre;
-         $arrayDatos["nombre_carrera"] = $datos["solicitudes"][0]->nombre_carrera;
-         $arrayDatos["no_de_control"] = $datos["solicitudes"][0]->no_de_control;
-         $arrayDatos["observacion"] = $datos["solicitudes"][0]->observacion;
-         $arrayDatos["motivos_academicos"] = $datos["solicitudes"][0]->motivos_academicos;
-         $arrayDatos["motivos_personales"] = $datos["solicitudes"][0]->motivos_personales;
-         $arrayDatos["otros"] = $datos["solicitudes"][0]->otros;
-         $this->load->view('Solicitudes/viewSolicitudPDF_Estudiante',$arrayDatos);
-
-
-    }
-
-
      public function solicitudPDFEstudiante()
     {
      
@@ -124,6 +99,22 @@ class Home extends CI_Controller
  
         //download it.
         $this->m_pdf->pdf->Output($pdfFilePath, "D"); 
+
+    }
+
+
+     public function evaluarSolicitudEstudiante()
+    {
+     
+     	$num_solicitud = $_REQUEST["num_solicitud"];
+     	$status = $_REQUEST["status"];
+
+     	
+
+        $this->load->model('Solicitudes/Model_Solicitudes');
+         $datos = $this->Model_Solicitudes->evaluarSolicitudEstudiante($num_solicitud,$status);
+
+        echo json_encode($datos);
 
     }
 
