@@ -73,8 +73,8 @@ var base_url = $("body").attr("data-base-url");
 	          dataType:"json",
 	          url: base_url+"Login/loginUsuario",
 	          data: {
-	          		email: $("#email").val(),
-					password: $("#password").val(),
+	          		email: $("#email").val().trim(),
+					password: $("#password").val().trim(),
 	          },
 	          async: true,
 	          success: function(result)

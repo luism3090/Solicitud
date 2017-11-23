@@ -283,14 +283,14 @@ $(document).on('ready',function()
                  e.preventDefault();
 
                  var datosCarrera = {
-                   claveOficial:$("#txtClaveOficialCarrera").val(),
+                   claveOficial:$("#txtClaveOficialCarrera").val().trim(),
                     claveOficialOrigen:$("#txtClaveOficialCarrera").prop("clave_oficial"),
-                   carrera:$("#txtCarrera").val(),
-                   nombreCarrera:$("#txtNombreCarrera").val(),
-                   nombreCarreraReducido:$("#txtNombreCarreraReducido").val(),
-                   cargaMaxima:$("#txtCargaMaxima").val(),
-                   cargaMinima:$("#txtCargaMinima").val(),
-                   creditosTotales:$("#txtCreditosTotales").val()
+                   carrera:$("#txtCarrera").val().trim(),
+                   nombreCarrera:$("#txtNombreCarrera").val().trim(),
+                   nombreCarreraReducido:$("#txtNombreCarreraReducido").val().trim(),
+                   cargaMaxima:$("#txtCargaMaxima").val().trim(),
+                   cargaMinima:$("#txtCargaMinima").val().trim(),
+                   creditosTotales:$("#txtCreditosTotales").val().trim()
                  }
 
                  // console.log(datosCarrera);

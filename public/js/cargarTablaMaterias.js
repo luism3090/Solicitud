@@ -150,11 +150,11 @@ $(document).on('ready',function()
 
                  var datosMateria = {
                     id_materia:$("#btnMdlAlertModificarMaterias").prop("id_materia"),
-                    nombre_completo_materia:$("#txtNombreMateria").val(),
-                    nombre_abreviado_materia:$("#txtNombreMateriaAbreviado").val()
+                    nombre_completo_materia:$("#txtNombreMateria").val().trim(),
+                    nombre_abreviado_materia:$("#txtNombreMateriaAbreviado").val().trim()
                  }
 
-                 console.log(datosMateria);
+                
 
                  $.ajax(
                  {

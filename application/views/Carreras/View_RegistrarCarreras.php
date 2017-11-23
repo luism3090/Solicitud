@@ -149,11 +149,11 @@
 									</div>
 									<div class="form-group">
 										<label for="txtCarrera">Carrera:</label>
-										<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera" minlength="1"  maxlength="100">
+										<input type="text" id="txtCarrera" name="txtCarrera" class="form-control" placeholder="Carrera" minlength="1"  maxlength="200">
 									</div>
 									<div class="form-group">
 										<label for="txtNombreCarrera">Nombre carrera:</label>
-										<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
+										<input type="text" id="txtNombreCarrera" name="txtNombreCarrera"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="200" >
 									</div>
 									<div class="form-group">
 										<label for="txtNombreCarreraReducido">Nombre reducido:</label>

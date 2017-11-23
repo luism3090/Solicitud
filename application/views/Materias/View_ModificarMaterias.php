@@ -190,7 +190,7 @@
 						<div class="col-xs-12">
 							<div class="form-group">
 								<label for="txtNombreMateria">Nombre materia:</label>
-								<input type="text" id="txtNombreMateria" name="txtNombreMateria"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="100" >
+								<input type="text" id="txtNombreMateria" name="txtNombreMateria"  class="form-control" placeholder="Nombre carrera" minlength="1"  maxlength="200" >
 							</div>
 						</div>
 					</div>	

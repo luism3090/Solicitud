@@ -193,7 +193,7 @@ DOCTYPE html>
 						</div>
 						<div class="form-group">
 							<label for="txtIdentificacion_larga">Identificación larga:</label>
-							<input type="text" id="txtIdentificacion_larga" name="txtIdentificacion_larga" class="form-control" placeholder="Identificación larga" minlength="1"  maxlength="100">
+							<input type="text" id="txtIdentificacion_larga" name="txtIdentificacion_larga" class="form-control" placeholder="Identificación larga" minlength="1"  maxlength="200">
 						</div>
 						<div class="form-group">
 							<label for="txtIdentificacion_corta">Identificación corta:</label>

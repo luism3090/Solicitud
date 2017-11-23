@@ -174,9 +174,9 @@ $(document).ready(function()
 				var datosCarrerasMaterias = {
 											
 											id_materia:$(this).attr("data-id_materia"),
-											creditos_materia:$(this).find("input").eq(0).val(),
-											horas_teoricas:$(this).find("input").eq(1).val(),
-											horas_practicas:$(this).find("input").eq(2).val()
+											creditos_materia:$(this).find("input").eq(0).val().trim(),
+											horas_teoricas:$(this).find("input").eq(1).val().trim(),
+											horas_practicas:$(this).find("input").eq(2).val().trim()
 				
 											}
 

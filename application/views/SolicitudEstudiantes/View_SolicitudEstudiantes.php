@@ -37,7 +37,7 @@
                                                        
                                                             <div class="form-group form-right">
                                                                  <label for="txtLugar" >Lugar:</label>
-                                                                 <input type="text" id="txtLugar" name="txtLugar"  class="form-control" placeholder="Lugar" style='width:180px;' >
+                                                                 <input type="text" id="txtLugar" name="txtLugar"  class="form-control" placeholder="Lugar" style='width:180px;' minlength="1" maxlength="200">
                                                             </div>
 
                                                             <div class="form-group form-right">
@@ -59,7 +59,7 @@
                                                        <div style='border:0px solid red;width: 80%;margin-left: 220px;'>
                                                              <div class="form-group form-right">
                                                                  <label for="txtAsunto">Asunto:</label>
-                                                                 <textarea style='width:448px;height: 58px;' id="txtAsunto" name="txtAsunto" class="form-control" placeholder="Asunto" ></textarea>
+                                                                 <textarea style='width:448px;height: 58px;' id="txtAsunto" name="txtAsunto" class="form-control" placeholder="Asunto" minlength="1" maxlength="350" ></textarea>
                                                             </div>
                                                        </div>
 
@@ -97,16 +97,16 @@
                                                        
                                                            <div class="form-group">
                                                                 <label>El (la) que suscribe C. </label>
-                                                                <input type="text" id="txtNombreEstudiante" name="txtNombreEstudiante"  class="form-control" placeholder="Nombre" style='width:230px;'>
+                                                                <input type="text" id="txtNombreEstudiante" name="txtNombreEstudiante"  class="form-control" placeholder="Nombre" style='width:230px;' minlength="1" maxlength="100">
 
                                                            </div>
 
                                                            <div class="form-group">
-                                                                <input type="text" id="txtApellidoPaterno" name="txtApellidoPaterno"  class="form-control" placeholder="Apellido Paterno" style='width:191px;'> 
+                                                                <input type="text" id="txtApellidoPaterno" name="txtApellidoPaterno"  class="form-control" placeholder="Apellido Paterno" style='width:191px;' minlength="1" maxlength="100"> 
                                                            </div>
                                                           
                                                           <div class="form-group">
-                                                                <input type="text" id="txtApellidoMaterno" name="txtApellidoMaterno"  class="form-control" placeholder="Apellido Materno" style='width:191px'> 
+                                                                <input type="text" id="txtApellidoMaterno" name="txtApellidoMaterno"  class="form-control" placeholder="Apellido Materno" style='width:191px' minlength="1" maxlength="100"> 
                                                            </div>
 
                                                        </div>
@@ -138,7 +138,7 @@
                                                                   <label> con numero de control  </label> 
                                                             </div>
                                                             <div class="form-group" style='margin-left: 45px;'>
-                                                                  <input type="text" id="txtNumControl" name="txtNumControl"  class="form-control" placeholder="Número de control" style='width:280px;'>  
+                                                                  <input type="text" id="txtNumControl" name="txtNumControl"  class="form-control" placeholder="Número de control" style='width:280px;' minlength="1" maxlength="30">  
                                                             </div>
                                                             <div class="form-group" style='margin-left: 40px;'>
                                                                   <label> solicito de la manera más atenta: </label> 
@@ -149,7 +149,7 @@
 
                                                        <div style='width: 780px;'>
                                                             <div class="form-group" >
-                                                                 <textarea style='width:776px;height:70px' id="txtObservacion" name="txtObservacion" placeholder="Observación" class="form-control"></textarea>
+                                                                 <textarea style='width:776px;height:70px' id="txtObservacion" name="txtObservacion" placeholder="Observación" class="form-control" minlength="1" maxlength="500"></textarea>
                                                             </div>
                                                        </div>
                                                        <br>
@@ -158,7 +158,7 @@
                                                         <div style='width: 780px;'>
                                                             <div class="form-group">
                                                                 <label for='txtCurpEstudiante'>Curp: </label>
-                                                                <input type="text" id="txtCurpEstudiante" name="txtCurpEstudiante"  class="form-control" placeholder="Curp del estudiante" style='width:735px'>
+                                                                <input type="text" id="txtCurpEstudiante" name="txtCurpEstudiante"  class="form-control" placeholder="Curp del estudiante" style='width:735px' minlength="1" maxlength="30">
 
                                                             </div>     
                                                          </div>    
@@ -180,7 +180,7 @@
 
                                                        <div style='width: 780px;'>
                                                              <div class="form-group" >
-                                                                 <textarea style='width:776px;height:70px' id="txtMotivosAcademicos" name="txtMotivosAcademicos" placeholder="Motivos académicos" class="form-control"></textarea>
+                                                                 <textarea style='width:776px;height:70px' id="txtMotivosAcademicos" name="txtMotivosAcademicos" placeholder="Motivos académicos" class="form-control" minlength="1" maxlength="500"></textarea>
                                                             </div>
                                                        </div>  
 
@@ -194,7 +194,7 @@
 
                                                        <div style='width: 780px;'>
                                                              <div class="form-group" >
-                                                                  <textarea style='width:776px;height:70px' id="txtMotivosPersonales" name="txtMotivosPersonales" placeholder="Motivos personales" class="form-control"></textarea>
+                                                                  <textarea style='width:776px;height:70px' id="txtMotivosPersonales" name="txtMotivosPersonales" placeholder="Motivos personales" class="form-control" minlength="1" maxlength="500"></textarea>
                                                             </div>
                                                        </div>  
 
@@ -208,18 +208,18 @@
 
                                                        <div style='width: 780px;'>
                                                              <div class="form-group" >
-                                                                  <textarea style='width:776px;height:70px' placeholder="Otros" id="txtOtros" name="txtOtros" class="form-control"></textarea>
+                                                                  <textarea style='width:776px;height:70px' placeholder="Otros" id="txtOtros" name="txtOtros" class="form-control" minlength="1" maxlength="500"></textarea>
                                                             </div>
                                                        </div>  
                                      
                               </div>
 
-                                <div class="row">
-                                      <div class="col-xs-12 ">
-                                          <br><br>
-                                          <button type="submit" class="btn btn-primary center-block text-center" id="btnAceptarSolicitudEstudiante" >Aceptar</button>
-                                      </div>
-                                </div>
+                                        <div class="row">
+                                              <div class="col-xs-12 ">
+                                                  <br><br>
+                                                  <button type="submit" class="btn btn-primary center-block text-center" id="btnAceptarSolicitudEstudiante" >Aceptar</button>
+                                              </div>
+                                        </div>
                               
                     </form>
                           

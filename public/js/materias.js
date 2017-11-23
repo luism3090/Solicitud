@@ -57,8 +57,8 @@ $(document).ready(function()
 			e.preventDefault();
 
 			var datosMateria = {
-				nombre_completo_materia:$("#txtNombreMateria").val(),
-				nombre_abreviado_materia:$("#txtNombreMateriaAbreviado").val(),
+				nombre_completo_materia:$("#txtNombreMateria").val().trim(),
+				nombre_abreviado_materia:$("#txtNombreMateriaAbreviado").val().trim(),
 				
 			}
 

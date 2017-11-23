@@ -252,14 +252,14 @@ $(document).on("ready",function()
 		let datosAlumno = 
 			{
 				no_de_control:$("#txtNumControl").val().trim(),
-				id_semestre:$("#slSemestres").val().trim(),
+				id_semestre:$("#slSemestres").val(),
 				apellido_paterno:$("#txtApellidoPaterno").val().trim(),
 				apellido_materno:$("#txtApellidoMaterno").val().trim(),
 				nombre_alumno:$("#txtNombreEstudiante").val().trim(),
 				curp_alumno:$("#txtCurpEstudiante").val().trim(),
 				creditos_aprobados:'',
 				creditos_cursados:'',
-				clave_oficial:$("#slCarreras").val().trim()
+				clave_oficial:$("#slCarreras").val()
 			}
 
 			let datosSolicitud = 
@@ -272,9 +272,9 @@ $(document).on("ready",function()
 				motivos_academicos:$("#txtMotivosAcademicos").val().trim(),
 				motivos_personales:$("#txtMotivosPersonales").val().trim(),
 				otros:$("#txtOtros").val().trim(),
-				id_semestre:$("#slSemestres").val().trim(),
-				clave_oficial:$("#slCarreras").val().trim(),
-				id_periodo_escolar:$("#slPeriodoEscolar").val().trim()
+				id_semestre:$("#slSemestres").val(),
+				clave_oficial:$("#slCarreras").val(),
+				id_periodo_escolar:$("#slPeriodoEscolar").val()
 				
 			}
 
@@ -497,7 +497,7 @@ $(document).on("ready",function()
 
 	$("body").on("click","#rdSolicitudSI",function()
 	{
-		let num_control = $("#txtNumControl").val();
+		let num_control = $("#txtNumControl").val().trim();
 		$("#txtNumControl").attr('readonly', false);
 		$("#btnAceptarSolicitudEstudiante").attr("disabled",false);
 		$("#formSolicitudEstudiante").data("bootstrapValidator").resetField("txtNumControl",true);
